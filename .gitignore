@@ -39,3 +39,8 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
+
+###
+# Jetbrains suite IDE generated folder 
+###
+.idea/
