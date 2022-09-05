@@ -9,32 +9,49 @@ public class EnemyRagdoll : MonoBehaviour
     [SerializeField] private float upForce = 1000;
     [SerializeField] private float forwardForce = 500;
     [SerializeField] private float moveSpeed = 10;
+    [SerializeField] private float leapRange = 7;
+
+    public Transform player;
 
     public Transform parent;
 
-    float runTime = 3f;
     bool usedLeap = false;
 
     // Start is called before the first frame update
     void Start()
     {
         characterAnimator = gameObject.GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        runTime -= Time.deltaTime;
+        RaycastHit hit;
+        Vector3 rayDirection = player.position - transform.position;
 
-        if (runTime <= 0 && !usedLeap)
+        if (Physics.Raycast(transform.position, rayDirection, out hit) && player != null )
         {
-            Leap();
+            if (hit.transform == player)
+            {
+
+                if (Vector3.Distance(transform.position, player.position) <= leapRange && !usedLeap )
+                {
+                    transform.LookAt(player.transform);
+                    Leap();
+                }
+
+            }
+
         }
-        else if (runTime > 0)
+
+        if (!usedLeap)
         {
             Run();
         }
+
+
     }
 
 
