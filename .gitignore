@@ -28,6 +28,10 @@ sysinfo.txt
 *.pidb
 .DS_Store
 
+# Visual studio junk
+**/.vs
+*.vsconfig
+
 ###
 # OS generated
 ###
