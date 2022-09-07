@@ -5,15 +5,23 @@ using UnityEngine;
 
 public class TempCharController : MonoBehaviour
 {
-    public float movementSpeed = 10f;
     public SpawnManager spawnManager;
+
+    private Rigidbody rb;
+    private float horizontalSpeed = 20f;
+    private float verticalSpeed = 40f;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        float hMovement = Input.GetAxis("Horizontal") * movementSpeed / 2f;
-        float vMovement = Input.GetAxis("Vertical") * movementSpeed;
-        transform.Translate(new Vector3(hMovement, 0, vMovement) * Time.deltaTime);
+        float hMovement = Input.GetAxis("Horizontal") * horizontalSpeed;
+        float vMovement = Input.GetAxis("Vertical") * verticalSpeed;
+        rb.velocity = new Vector3(hMovement, 0, vMovement);
     }
 
     private void OnTriggerEnter(Collider other)
