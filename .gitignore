@@ -48,3 +48,6 @@ Thumbs.db
 # Jetbrains suite IDE generated folder 
 ###
 .idea/
+*.iws
+*.iml
+*.ipr
