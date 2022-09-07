@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     public PathCreator pathCreator;
     public Transform bottom;
-    private Animator animator;
 
     private const float forwardMoveSpeed = 100f;
     private const float sideMoveSpeed = 50f;
@@ -21,21 +20,9 @@ public class PlayerController : MonoBehaviour
     private float verticalVelocity = 0f;
     private float verticalOffset = 0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
-
     // Update is called once per frame
     void Update()
     {
-
-        float moveStrength = Mathf.Abs(Input.GetAxis("Vertical")) + Mathf.Abs(Input.GetAxis("Horizontal"));
-
-        animator.SetFloat("Forward", moveStrength * 5f, 0.1f, Time.deltaTime);
-        animator.SetFloat("Jump", verticalVelocity);
-
         forwardOffset += Input.GetAxis("Vertical") * Time.deltaTime * forwardMoveSpeed;
         //forwardOffset = Mathf.Clamp(forwardOffset, edgeGap, pathCreator.path.length - edgeGap);
 
@@ -50,7 +37,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             verticalVelocity += 0.1f;
-            animator.SetBool("OnGround", false);
         }
 
         if (Mathf.Abs(verticalVelocity) > 0f)
@@ -59,13 +45,11 @@ public class PlayerController : MonoBehaviour
             verticalOffset += verticalVelocity;
             if (verticalOffset <= 0f)
             {
-                animator.SetBool("OnGround", true);
                 verticalVelocity = 0f;
                 verticalOffset = 0f;
             }
         }
         
-
         transform.position = forwardPosition + sidePosition - bottom.localPosition + topPosition;
         transform.rotation = rotation;
     }
