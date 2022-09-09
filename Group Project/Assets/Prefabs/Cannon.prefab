@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5216208545868231155}
   - component: {fileID: 6891113986506861931}
   - component: {fileID: 6891113986506861941}
+  - component: {fileID: 8015783058881454256}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -27,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6008732609918177318}
-  m_LocalRotation: {x: 0, y: 0.5673408, z: 0, w: 0.82348317}
-  m_LocalPosition: {x: -4.43, y: 0.84, z: -3.27}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6891113986113568390}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 69.13, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8036468204480349497
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -193,7 +194,19 @@ MonoBehaviour:
   KalebRagdoll: {fileID: 8264544233870008079, guid: 48018f823e67b86449954b7f2a63cd2c,
     type: 3}
   explosion: {fileID: 100010, guid: 645413a00f7bd0242bbd6d0e5eb6f439, type: 3}
-  launchForce: 581.44
+--- !u!135 &8015783058881454256
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6008732609918177318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 16}
 --- !u!1 &6891113986113568385
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +230,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6891113986113568385}
-  m_LocalRotation: {x: -0, y: -0.5673408, z: -0, w: 0.82348317}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.023, y: 0.228, z: 0.896}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

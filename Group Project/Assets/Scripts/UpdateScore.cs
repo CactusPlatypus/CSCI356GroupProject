@@ -1,25 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SpawnManager : MonoBehaviour
+public class UpdateScore : MonoBehaviour
 {
-    private RoadSpawner roadSpawner;
-    
+    private Text text;
     // Start is called before the first frame update
     void Start()
     {
-        roadSpawner = GetComponent<RoadSpawner>();
+        text = GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void SpawnTriggerEntered()
-    {
-        roadSpawner.MoveRoad();
+        text.text = "Score: " + Mathf.FloorToInt(Time.timeSinceLevelLoad);
     }
 }

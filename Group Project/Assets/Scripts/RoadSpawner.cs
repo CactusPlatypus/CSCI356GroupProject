@@ -5,26 +5,49 @@ using UnityEngine;
 
 public class RoadSpawner : MonoBehaviour
 {
-    public List<GameObject> roads;
-    // Each road prefab consists of 2 road tiles each 30m long
-    private float offset = 60f;
+    // Store all road variations
+    public GameObject[] roadPrefabs;
+
+    // Store active roads in the scene, max of 20 for now
+    private const int numRoads = 20;
+    private Queue<GameObject> roads = new Queue<GameObject>(numRoads);
+
+    private Transform player;
     
+    private GameObject SpawnRoad(Transform end)
+    {
+        // Make a random road prefab and add it to the queue
+        GameObject randomRoad = roadPrefabs[Random.Range(0, roadPrefabs.Length)];
+        GameObject road = Instantiate(randomRoad);
+        roads.Enqueue(road);
+
+        // Connect it to the end of the previous road
+        Transform start = road.transform.Find("Start");
+        road.transform.rotation = end.rotation * start.rotation;
+        road.transform.position = end.position - start.position;
+
+        return road;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        // Sort roads based on z value (just in case in editor we don't order the roads properly)
-        if (roads != null && roads.Count > 0)
+        player = GameObject.FindWithTag("Player").transform;
+
+        Transform lastEnd = transform;
+        for (int i = 0; i < numRoads; i++)
         {
-            roads = roads.OrderBy(r => r.transform.position.z).ToList();
+            GameObject road = SpawnRoad(lastEnd);
+            lastEnd = road.transform.Find("End");
         }
     }
 
-    public void MoveRoad()
+    public void TriggerEntered()
     {
-        GameObject movedRoad = roads[0];
-        roads.Remove(movedRoad);
-        float newZ = roads[roads.Count - 1].transform.position.z + offset;
-        movedRoad.transform.position = new Vector3(0, 0, newZ);
-        roads.Add(movedRoad);
+        // Nuke the first road in queue
+        Destroy(roads.Dequeue());
+
+        // Attach new road to the end of the last
+        SpawnRoad(roads.Last().transform.Find("End"));
     }
 }

@@ -150,8 +150,6 @@ MonoBehaviour:
   forwardForce: 1000
   moveSpeed: 2
   leapRange: 7
-  player: {fileID: 0}
-  parent: {fileID: 1780538056}
 --- !u!1 &177886820
 GameObject:
   m_ObjectHideFlags: 0

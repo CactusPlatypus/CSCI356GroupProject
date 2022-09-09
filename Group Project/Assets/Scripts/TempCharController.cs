@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class TempCharController : MonoBehaviour
 {
-    public SpawnManager spawnManager;
+    public RoadSpawner spawnManager;
 
     private Rigidbody rb;
-    private float horizontalSpeed = 20f;
-    private float verticalSpeed = 40f;
+    private const float horizontalSpeed = 70f;
+    private const float verticalSpeed = 60f;
 
     void Start()
     {
@@ -20,15 +20,17 @@ public class TempCharController : MonoBehaviour
     void Update()
     {
         float hMovement = Input.GetAxis("Horizontal") * horizontalSpeed;
-        float vMovement = Input.GetAxis("Vertical") * verticalSpeed;
-        rb.velocity = new Vector3(hMovement, 0, vMovement);
+        //float vMovement = Input.GetAxis("Vertical") * verticalSpeed;
+
+        rb.velocity = transform.forward * verticalSpeed - transform.up * 20f;
+        transform.eulerAngles += transform.up * hMovement * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("SpawnTrigger"))
+        if (other.CompareTag("SpawnTrigger"))
         {
-            spawnManager.SpawnTriggerEntered();
+            spawnManager.TriggerEntered();
         }
     }
 }
