@@ -8,8 +8,8 @@ public class RoadSpawner : MonoBehaviour
     // Store all road variations
     public GameObject[] roadPrefabs;
 
-    // Store active roads in the scene, max of 20 for now
-    private const int numRoads = 20;
+    // Store active roads in the scene, max of 64 for now
+    private const int numRoads = 64;
     private Queue<GameObject> roads = new Queue<GameObject>(numRoads);
 
     private Transform player;
