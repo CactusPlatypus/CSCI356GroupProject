@@ -30,7 +30,6 @@ sysinfo.txt
 
 # Visual studio junk
 **/.vs
-*/.vs
 *.vsconfig
 
 ###
