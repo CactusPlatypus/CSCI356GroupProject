@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 19800000}
   - component: {fileID: 19900000}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Trail White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4639,7 +4639,7 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 19800002}
   - component: {fileID: 19900002}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TrailsWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9380,7 +9380,7 @@ GameObject:
   - component: {fileID: 400004}
   - component: {fileID: 19800004}
   - component: {fileID: 19900004}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14163,7 +14163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400010}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ExplosionMobile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14198,7 +14198,7 @@ GameObject:
   - component: {fileID: 400016}
   - component: {fileID: 19800012}
   - component: {fileID: 19900012}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}

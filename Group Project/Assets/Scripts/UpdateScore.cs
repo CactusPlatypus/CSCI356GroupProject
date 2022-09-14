@@ -15,6 +15,6 @@ public class UpdateScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "Score: " + Mathf.FloorToInt(Time.timeSinceLevelLoad);
+        text.text = "Score: " + Time.timeSinceLevelLoad.ToString("0.00");
     }
 }
