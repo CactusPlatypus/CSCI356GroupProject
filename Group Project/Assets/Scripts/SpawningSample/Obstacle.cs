@@ -6,7 +6,7 @@ public class Obstacle : MonoBehaviour
 {
 
     [SerializeField] float health;
-
+    
 
     
 
