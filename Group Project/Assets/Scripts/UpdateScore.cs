@@ -1,20 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UpdateScore : MonoBehaviour
 {
-    private Text text;
+   [SerializeField] private TMP_Text scoreTxt;
+   float score = 0;
     // Start is called before the first frame update
     void Start()
     {
-        text = GetComponent<Text>();
+        
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
-        text.text = "Score: " + Mathf.FloorToInt(Time.timeSinceLevelLoad);
+        score += Time.deltaTime;
+        scoreTxt.text = Mathf.FloorToInt(score).ToString();
     }
 }
