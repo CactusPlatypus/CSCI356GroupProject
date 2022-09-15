@@ -25,6 +25,7 @@ public class RoadSpawner : MonoBehaviour
 
     private IEnumerator SpawnObstacles(GameObject road)
     {
+        // Hack, wait for physics update before getting bounds
         yield return new WaitForSeconds(0.1f);
 
         Bounds bounds = road.GetComponentInChildren<MeshCollider>().bounds;
