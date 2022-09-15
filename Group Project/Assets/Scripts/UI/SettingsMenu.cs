@@ -15,10 +15,18 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider SFXSlider;
 
-
+    public void Start()
+    {
+        updateSliders();
+    }
     public void loadGame()
     {
         SceneManager.LoadScene(0);
+        float val = 0;
+    }
+
+    public void updateSliders()
+    {
         float val = 0;
         audioMixer.GetFloat("MasterVolume", out val);
         mainSlider.value = val;

@@ -1391,6 +1391,9 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: b4bf5c00205c18e41a0a7af495cda68a, type: 2}
   mainMenu: {fileID: 810768187}
   settingsMenu: {fileID: 610027048}
+  mainSlider: {fileID: 103289101}
+  musicSlider: {fileID: 1813746876}
+  SFXSlider: {fileID: 483501840}
 --- !u!114 &610027051
 MonoBehaviour:
   m_ObjectHideFlags: 0
