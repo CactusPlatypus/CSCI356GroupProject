@@ -5,18 +5,21 @@ using UnityEngine;
 public class MenuSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject spawnedObject;
-    [SerializeField] private float cooldown = 5;
-    private float currentTime = 0.0f;
-  
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private float cooldown = 5f;
+
+    private void Start()
     {
-        currentTime += Time.deltaTime;
-        if (currentTime > cooldown)
-        {
-            currentTime = 0;
-            GameObject spawned = Instantiate(spawnedObject, transform);
-       
-        }
+        StartCoroutine(Spawn());
+    }
+
+    private IEnumerator Spawn()
+    {
+        yield return new WaitForSeconds(cooldown);
+
+        GameObject spawned = Instantiate(spawnedObject, transform.position, Quaternion.identity);
+        // Clean up Kalebs after 5 seconds
+        Destroy(spawned, 5f);
+
+        StartCoroutine(Spawn());
     }
 }

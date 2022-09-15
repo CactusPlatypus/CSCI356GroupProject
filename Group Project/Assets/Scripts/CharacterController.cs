@@ -15,7 +15,7 @@ public class CharacterController : MonoBehaviour
     private const float rotationSharpness = 10f;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         float hMovement = Input.GetAxis("Horizontal") * horizontalSpeed;
         //float vMovement = Input.GetAxis("Vertical") * verticalSpeed;

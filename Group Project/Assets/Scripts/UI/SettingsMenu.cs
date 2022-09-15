@@ -7,27 +7,23 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-
     public AudioMixer audioMixer;
-    public GameObject mainMenu;
-    public GameObject settingsMenu;
-    [SerializeField] Slider mainSlider;
-    [SerializeField] Slider musicSlider;
-    [SerializeField] Slider SFXSlider;
+
+    // Menu displaying settings button, either pause menu or main menu
+    public GameObject hostMenu;
+
+    [SerializeField] private Slider mainSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider SFXSlider;
 
     public void Start()
     {
         updateSliders();
     }
-    public void loadGame()
-    {
-        SceneManager.LoadScene(0);
-        float val = 0;
-    }
 
     public void updateSliders()
     {
-        float val = 0;
+        float val;
         audioMixer.GetFloat("MasterVolume", out val);
         mainSlider.value = val;
         audioMixer.GetFloat("MusicVolume", out val);
@@ -51,26 +47,29 @@ public class SettingsMenu : MonoBehaviour
         audioMixer.SetFloat("SFXVolume", volume);
     }
 
-    public void showMainMneu()
-    {
-        mainMenu.SetActive(true);
-        hideSettings();
-    }
-
-    public void hideMainMenu()
-    {
-        mainMenu.SetActive(false);
-    }
-
     public void showSettings()
     {
-        settingsMenu.SetActive(true);
-        hideMainMenu();
+        gameObject.SetActive(true);
+        hostMenu.SetActive(false);
     }
 
     public void hideSettings()
     {
-        settingsMenu.SetActive(false);
+        gameObject.SetActive(false);
+        hostMenu.SetActive(true);
     }
 
+    public void loadGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void quitGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
 }

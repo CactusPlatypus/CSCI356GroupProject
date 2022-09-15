@@ -155,10 +155,10 @@ RectTransform:
   m_Father: {fileID: 810768188}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.38500002, y: 0.09183502}
-  m_AnchorMax: {x: 0.61750007, y: 0.22800002}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.000030517578, y: 0.0000076293945}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 70}
+  m_SizeDelta: {x: 186.00003, y: 60.000008}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &28977226
 MonoBehaviour:
@@ -202,7 +202,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 28977227}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 610027050}
+        m_MethodName: quitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &28977227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000022888184, y: 0}
+  m_AnchoredPosition: {x: -0.000015258789, y: 0}
   m_SizeDelta: {x: 0.000030517578, y: -12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &59680211
@@ -384,7 +395,7 @@ GameObject:
   m_Component:
   - component: {fileID: 103289100}
   - component: {fileID: 103289101}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,7 +496,7 @@ GameObject:
   - component: {fileID: 125617751}
   - component: {fileID: 125617753}
   - component: {fileID: 125617752}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +570,7 @@ GameObject:
   - component: {fileID: 308867606}
   - component: {fileID: 308867608}
   - component: {fileID: 308867607}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,7 +636,7 @@ GameObject:
   - component: {fileID: 337543968}
   - component: {fileID: 337543970}
   - component: {fileID: 337543969}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,7 +659,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -158, y: -3.7898}
+  m_AnchoredPosition: {x: -155, y: -3.7898}
   m_SizeDelta: {x: 112.75183, y: 42.42041}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &337543969
@@ -760,7 +771,7 @@ GameObject:
   - component: {fileID: 407836190}
   - component: {fileID: 407836189}
   m_Layer: 5
-  m_Name: Headong
+  m_Name: Heading
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -780,11 +791,11 @@ RectTransform:
   m_Father: {fileID: 810768188}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.21669205, y: 0.61655545}
-  m_AnchorMax: {x: 0.7806159, y: 0.98035735}
-  m_AnchoredPosition: {x: 1.5, y: -137.5}
-  m_SizeDelta: {x: -251, y: -117}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -202.9}
+  m_SizeDelta: {x: 200, y: 43}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &407836189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,7 +815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Kalebs' Nightmare
+  m_text: Kaleb's Nightmare
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 88041aa7a35f1a24ca648197328efe64, type: 2}
   m_sharedMaterial: {fileID: -4473970178320449428, guid: 88041aa7a35f1a24ca648197328efe64,
@@ -985,7 +996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483501839}
   - component: {fileID: 483501840}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1179,7 +1190,7 @@ GameObject:
   - component: {fileID: 570890436}
   - component: {fileID: 570890435}
   - component: {fileID: 570890434}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1201,10 +1212,10 @@ RectTransform:
   m_Father: {fileID: 610027049}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.39757016, y: 0.063}
-  m_AnchorMax: {x: 0.61923987, y: 0.18326814}
-  m_AnchoredPosition: {x: 0, y: -0.020111084}
-  m_SizeDelta: {x: 0.000015258789, y: -0.040237427}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 140.9}
+  m_SizeDelta: {x: 357, y: 106.95976}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &570890434
 MonoBehaviour:
@@ -1250,7 +1261,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 610027050}
-        m_MethodName: showMainMneu
+        m_MethodName: hideSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1306,7 +1317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573248096}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MusicVolume SLider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1329,10 +1340,10 @@ RectTransform:
   m_Father: {fileID: 706269455}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.3423523, y: 0.48269087}
-  m_AnchorMax: {x: 0.6851131, y: 0.5157318}
-  m_AnchoredPosition: {x: -8.344482, y: -224.32916}
-  m_SizeDelta: {x: 83.47455, y: 96.643875}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 432, y: -176.5}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &610027048
 GameObject:
@@ -1347,7 +1358,7 @@ GameObject:
   - component: {fileID: 610027052}
   - component: {fileID: 610027051}
   - component: {fileID: 610027050}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1389,8 +1400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: b4bf5c00205c18e41a0a7af495cda68a, type: 2}
-  mainMenu: {fileID: 810768187}
-  settingsMenu: {fileID: 610027048}
+  hostMenu: {fileID: 810768187}
   mainSlider: {fileID: 103289101}
   musicSlider: {fileID: 1813746876}
   SFXSlider: {fileID: 483501840}
@@ -1599,7 +1609,7 @@ GameObject:
   - component: {fileID: 702683714}
   - component: {fileID: 702683716}
   - component: {fileID: 702683715}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1622,7 +1632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000038146973, y: 0.000015258789}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0.000015258789}
   m_SizeDelta: {x: 0.97979736, y: 0.2097168}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &702683715
@@ -1731,7 +1741,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 706269455}
-  m_Layer: 0
+  - component: {fileID: 706269456}
+  m_Layer: 5
   m_Name: Slider Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1757,9 +1768,33 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4.5, y: 188}
+  m_AnchoredPosition: {x: -13, y: -29}
   m_SizeDelta: {x: -749, y: -534}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &706269456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706269454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 1
+  m_CellSize: {x: 100, y: 100}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &714558344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,7 +1806,7 @@ GameObject:
   - component: {fileID: 714558345}
   - component: {fileID: 714558347}
   - component: {fileID: 714558346}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1864,7 +1899,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &716682361
@@ -2020,7 +2055,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 799242848}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MainVolume SLider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2043,10 +2078,10 @@ RectTransform:
   m_Father: {fileID: 706269455}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.3423523, y: 0.48269087}
-  m_AnchorMax: {x: 0.6851131, y: 0.5157318}
-  m_AnchoredPosition: {x: -8.344482, y: -172.82916}
-  m_SizeDelta: {x: 83.47455, y: 96.643875}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 432, y: -76.5}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &810768187
 GameObject:
@@ -2161,7 +2196,7 @@ GameObject:
   - component: {fileID: 830167745}
   - component: {fileID: 830167747}
   - component: {fileID: 830167746}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2235,7 +2270,7 @@ GameObject:
   - component: {fileID: 833788623}
   - component: {fileID: 833788625}
   - component: {fileID: 833788624}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2309,7 +2344,7 @@ GameObject:
   - component: {fileID: 835601198}
   - component: {fileID: 835601200}
   - component: {fileID: 835601199}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2604,7 +2639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 924091854}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2671,7 +2706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926156995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.5, y: 88.59, z: 0.36}
+  m_LocalPosition: {x: -11.5, y: 90.7, z: 0.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 474409636}
@@ -2689,7 +2724,7 @@ GameObject:
   - component: {fileID: 926819752}
   - component: {fileID: 926819754}
   - component: {fileID: 926819753}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2763,7 +2798,7 @@ GameObject:
   - component: {fileID: 929085351}
   - component: {fileID: 929085353}
   - component: {fileID: 929085352}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2786,7 +2821,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -162, y: 2.4379}
+  m_AnchoredPosition: {x: -159, y: 2.4379}
   m_SizeDelta: {x: 121.33569, y: 29.964996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &929085352
@@ -2895,7 +2930,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1018488815}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2931,7 +2966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1042148173}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2955,7 +2990,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.9999695, y: 0}
+  m_AnchoredPosition: {x: -4.9999237, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1061745209
@@ -2969,7 +3004,7 @@ GameObject:
   - component: {fileID: 1061745210}
   - component: {fileID: 1061745212}
   - component: {fileID: 1061745211}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3041,7 +3076,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1077521725}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3065,7 +3100,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.9999695, y: 0}
+  m_AnchoredPosition: {x: -4.9999237, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1261079462
@@ -3079,7 +3114,7 @@ GameObject:
   - component: {fileID: 1261079463}
   - component: {fileID: 1261079465}
   - component: {fileID: 1261079464}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3153,7 +3188,7 @@ GameObject:
   - component: {fileID: 1298017157}
   - component: {fileID: 1298017159}
   - component: {fileID: 1298017158}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Header
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3174,10 +3209,10 @@ RectTransform:
   m_Father: {fileID: 610027049}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.33632287, y: 0.6278129}
-  m_AnchorMax: {x: 0.6775157, y: 0.9065972}
-  m_AnchoredPosition: {x: -0.36649, y: -0.000091553}
-  m_SizeDelta: {x: 0.73306274, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -206.50009}
+  m_SizeDelta: {x: 550.73303, y: 247}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1298017158
 MonoBehaviour:
@@ -3316,7 +3351,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1305567904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.46, y: 88.59, z: 0.36}
+  m_LocalPosition: {x: 14.46, y: 90.7, z: 0.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 877609203}
@@ -3334,7 +3369,7 @@ GameObject:
   - component: {fileID: 1349780870}
   - component: {fileID: 1349780872}
   - component: {fileID: 1349780871}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3357,7 +3392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -148.65, y: 2.4379}
+  m_AnchoredPosition: {x: -145.65, y: 2.4379}
   m_SizeDelta: {x: 121.38019, y: 29.964935}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1349780871
@@ -3491,7 +3526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000022888184, y: 0}
+  m_AnchoredPosition: {x: -0.000015258789, y: 0}
   m_SizeDelta: {x: 0.000030517578, y: -12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1373075721
@@ -3694,7 +3729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1449519916}
   - component: {fileID: 1449519917}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Menu Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3821,7 +3856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1577280068}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3845,7 +3880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -4.9999695, y: 0}
+  m_AnchoredPosition: {x: -4.9999237, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1679306745
@@ -3857,7 +3892,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1679306746}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3893,7 +3928,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1718041241}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3928,7 +3963,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813746875}
   - component: {fileID: 1813746876}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4029,7 +4064,7 @@ GameObject:
   - component: {fileID: 1854731939}
   - component: {fileID: 1854731941}
   - component: {fileID: 1854731940}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4247,7 +4282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981363260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 88.59, z: 0.36}
+  m_LocalPosition: {x: 0, y: 90.7, z: 0.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1447368390}
@@ -4278,7 +4313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2013641495}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SFXVolumeSLider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4301,8 +4336,8 @@ RectTransform:
   m_Father: {fileID: 706269455}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.3423523, y: 0.48269087}
-  m_AnchorMax: {x: 0.6851131, y: 0.5157318}
-  m_AnchoredPosition: {x: -8.344482, y: -272.78}
-  m_SizeDelta: {x: 83.47455, y: 96.643875}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 432, y: -276.5}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
