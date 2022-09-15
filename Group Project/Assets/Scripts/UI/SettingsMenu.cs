@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
+
 public class SettingsMenu : MonoBehaviour
 {
 
@@ -9,6 +11,12 @@ public class SettingsMenu : MonoBehaviour
     public GameObject mainMenu;
     public GameObject settingsMenu;
 
+   
+
+    public void loadGame()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public void setMasterVolume(float volume)
     {
