@@ -43,7 +43,9 @@ namespace PathCreation.Examples
                 }
             }
 
-            if (GUILayout.Button("Bake Spline into Asset"))
+            GUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("Bake Road"))
             {
                 if (TryFindPathCreator())
                 {
@@ -75,6 +77,32 @@ namespace PathCreation.Examples
                 }
             }
 
+            if (GUILayout.Button("Unbake Road"))
+            {
+                if (TryFindPathCreator())
+                {
+                    // Delete saved mesh
+                    string name = pathTool.gameObject.name;
+                    string path = "Assets/Prefabs/BakedRoads/" + name + ".asset";
+                    if (File.Exists(path))
+                    {
+                        AssetDatabase.DeleteAsset(path);
+                        AssetDatabase.SaveAssets();
+                    }
+
+                    // Delete baked spline
+                    Transform baked = pathTool.gameObject.transform.parent.Find("Baked " + name);
+                    DestroyImmediate(baked.gameObject);
+
+                    // Show original mesh
+                    pathTool.gameObject.SetActive(true);
+
+                    // Force prefab to autosave
+                    EditorSceneManager.MarkSceneDirty(pathTool.gameObject.scene);
+                }
+            }
+
+            GUILayout.EndHorizontal();
         }
 
 
