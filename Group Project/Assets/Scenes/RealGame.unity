@@ -324,7 +324,7 @@ MonoBehaviour:
   - {fileID: 5262276912396272779, guid: 05f3dc76e22f8cc49a461eb61f666370, type: 3}
   obstacles:
   - {fileID: 7752002024171014483, guid: 19258d772bd9d284f9e662f36dfeed35, type: 3}
-  initialRoad: {fileID: 738508308}
+  initialRoad: {fileID: 1805269002}
 --- !u!4 &53823019
 Transform:
   m_ObjectHideFlags: 0
@@ -2227,12 +2227,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716834273}
   m_CullTransparentMesh: 0
---- !u!1 &738508308 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 704934634160780579, guid: 4e2c905a12d4c2b4485e4ea7084b00c2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1805269001}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &764872767
 GameObject:
   m_ObjectHideFlags: 0
@@ -4266,6 +4260,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e2c905a12d4c2b4485e4ea7084b00c2, type: 3}
+--- !u!1 &1805269002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 704934634160780579, guid: 4e2c905a12d4c2b4485e4ea7084b00c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1805269001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1808191427
 GameObject:
   m_ObjectHideFlags: 0

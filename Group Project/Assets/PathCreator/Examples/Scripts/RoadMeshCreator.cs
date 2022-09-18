@@ -5,9 +5,9 @@ using UnityEngine;
 namespace PathCreation.Examples {
     public class RoadMeshCreator : PathSceneTool {
         [Header ("Road settings")]
-        public float roadWidth = .4f;
-        [Range (0, .5f)]
-        public float thickness = .15f;
+        public float roadWidth = 10f;
+        [Range (0, 10f)]
+        public float thickness = .5f;
         public bool flattenSurface;
 
         [Header ("Material settings")]
@@ -28,6 +28,20 @@ namespace PathCreation.Examples {
                 AssignMaterials ();
                 CreateRoadMesh ();
             }
+        }
+
+        public override Mesh GetMesh()
+        {
+            if (pathCreator == null) return null;
+            AssignMeshComponents();
+            AssignMaterials();
+            CreateRoadMesh();
+            return mesh;
+        }
+
+        public override GameObject GetMeshHolder()
+        {
+            return meshHolder;
         }
 
         void CreateRoadMesh () {
@@ -130,11 +144,11 @@ namespace PathCreation.Examples {
             meshHolder.transform.localScale = Vector3.one;
 
             // Ensure mesh renderer and filter components are assigned
-            if (!meshHolder.gameObject.GetComponent<MeshFilter> ()) {
-                meshHolder.gameObject.AddComponent<MeshFilter> ();
+            if (!meshHolder.GetComponent<MeshFilter> ()) {
+                meshHolder.AddComponent<MeshFilter> ();
             }
             if (!meshHolder.GetComponent<MeshRenderer> ()) {
-                meshHolder.gameObject.AddComponent<MeshRenderer> ();
+                meshHolder.AddComponent<MeshRenderer> ();
             }
 
             meshRenderer = meshHolder.GetComponent<MeshRenderer> ();
