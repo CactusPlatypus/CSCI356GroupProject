@@ -11,8 +11,8 @@ public class RoadSpawner : MonoBehaviour
     // Store all obstacles
     public GameObject[] obstacles;
 
-    // Store active roads in the scene, max of 4 for now
-    private const int numRoads = 4;
+    // Store active roads in the scene, max of 16 for now
+    private const int numRoads = 16;
     private Queue<GameObject> roads = new Queue<GameObject>(numRoads);
 
     // Initial road the player starts on to delete, remove later
