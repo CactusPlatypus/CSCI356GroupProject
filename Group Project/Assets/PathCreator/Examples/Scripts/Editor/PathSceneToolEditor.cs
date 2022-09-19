@@ -67,7 +67,10 @@ namespace PathCreation.Examples
                     // Copy mesh rendering stuff to a new game object
                     GameObject copy = Instantiate(pathTool.GetMeshHolder(), pathTool.gameObject.transform.parent);
                     copy.name = "Baked " + name;
-                    copy.AddComponent<MeshCollider>();
+                    if (!copy.GetComponent<MeshCollider>())
+                    {
+                        copy.AddComponent<MeshCollider>();
+                    }
 
                     // Hide original mesh in case we want to edit it later
                     pathTool.gameObject.SetActive(false);
