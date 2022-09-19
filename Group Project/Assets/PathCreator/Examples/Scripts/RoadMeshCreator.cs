@@ -18,6 +18,7 @@ namespace PathCreation.Examples {
         [SerializeField, HideInInspector]
         GameObject meshHolder;
 
+        MeshCollider meshCollider;
         MeshFilter meshFilter;
         MeshRenderer meshRenderer;
         Mesh mesh;
@@ -155,18 +156,18 @@ namespace PathCreation.Examples {
             if (!meshHolder.GetComponent<MeshRenderer> ()) {
                 meshHolder.AddComponent<MeshRenderer> ();
             }
+            if (!meshHolder.GetComponent<MeshCollider>()) {
+                meshHolder.AddComponent<MeshCollider>();
+            }
 
-            meshRenderer = meshHolder.GetComponent<MeshRenderer> ();
-            meshFilter = meshHolder.GetComponent<MeshFilter> ();
+            meshRenderer = meshHolder.GetComponent<MeshRenderer>();
+            meshFilter = meshHolder.GetComponent<MeshFilter>();
+            meshCollider = meshHolder.GetComponent<MeshCollider>();
             if (mesh == null) {
                 mesh = new Mesh ();
             }
             meshFilter.sharedMesh = mesh;
-
-            if (!meshHolder.GetComponent<MeshCollider>()) {
-                MeshCollider collider = meshHolder.AddComponent<MeshCollider>();
-                collider.sharedMesh = mesh;
-            }
+            meshCollider.sharedMesh = mesh;
         }
 
         void AssignMaterials () {

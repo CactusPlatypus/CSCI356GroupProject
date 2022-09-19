@@ -28,7 +28,7 @@ public class CoinPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             coinLabel.add(1);
-            player.addSpeed(5);
+            player.addSpeed(1);
             Destroy(gameObject);
         }
     }
