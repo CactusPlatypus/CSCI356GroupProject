@@ -5,11 +5,11 @@ public class SmoothCamera : MonoBehaviour
 {
     public Transform target;
 
-    private Vector3 offset = new Vector3(0f, 3f, 4f);
+    private Vector3 offset = new Vector3(0f, 3f, 6f);
     private float positionSharpness = 5f;
     private float rotationSharpness = 5f;
 
-    void Update()
+    void LateUpdate()
     {
         Vector3 targetPosition = target.TransformPoint(offset);
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * positionSharpness);
