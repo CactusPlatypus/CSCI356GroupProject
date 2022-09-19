@@ -21,8 +21,6 @@ public class RoadSpawner : MonoBehaviour
     // How separated objects should be when spawned on the road
     private const float obstacleSpacingPerRoad = 4f;
 
-    private Transform player;
-
     // To allow scripts to globally access the road spawner
     public static RoadSpawner instance;
 
@@ -71,9 +69,8 @@ public class RoadSpawner : MonoBehaviour
     void Start()
     {
         instance = this;
-        player = GameObject.FindWithTag("Player").transform;
 
-        // Force initial road to be deleted, remove this later
+        // Force initial road to be deleted, maybe improve this later
         roads.Enqueue(initialRoad);
 
         Transform lastEnd = transform;

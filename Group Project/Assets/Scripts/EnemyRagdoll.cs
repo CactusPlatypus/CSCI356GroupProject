@@ -15,14 +15,12 @@ public class EnemyRagdoll : MonoBehaviour
 
     private bool usedLeap = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         characterAnimator = gameObject.GetComponent<Animator>();
         player = GameObject.FindWithTag("Player").transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Vector3.Distance(transform.position, player.position) <= leapRange && !usedLeap)
@@ -41,7 +39,6 @@ public class EnemyRagdoll : MonoBehaviour
             Run();
         }
     }
-
 
     private void Leap()
     {

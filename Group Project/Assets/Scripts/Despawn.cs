@@ -10,6 +10,4 @@ public class Despawn : MonoBehaviour
     {
         Destroy(gameObject, time);
     }
-
- 
 }
