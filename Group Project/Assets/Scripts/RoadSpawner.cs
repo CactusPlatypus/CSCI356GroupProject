@@ -23,6 +23,9 @@ public class RoadSpawner : MonoBehaviour
 
     private Transform player;
 
+    // To allow scripts to globally access the road spawner
+    public static RoadSpawner instance;
+
     private IEnumerator SpawnObstacles(GameObject road)
     {
         // Hack, wait for physics update before getting bounds
@@ -67,6 +70,7 @@ public class RoadSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         player = GameObject.FindWithTag("Player").transform;
 
         // Force initial road to be deleted, remove this later

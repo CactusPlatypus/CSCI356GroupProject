@@ -164,7 +164,8 @@ namespace PathCreation.Examples {
             meshFilter.sharedMesh = mesh;
 
             if (!meshHolder.GetComponent<MeshCollider>()) {
-                meshHolder.AddComponent<MeshCollider>();
+                MeshCollider collider = meshHolder.AddComponent<MeshCollider>();
+                collider.sharedMesh = mesh;
             }
         }
 

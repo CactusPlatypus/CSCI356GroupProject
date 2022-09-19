@@ -4,12 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpdateScore : MonoBehaviour
+public class ScoreText : MonoBehaviour
 {
-    [SerializeField] private TMP_Text scoreText;
+    private TMP_Text scoreText;
     private float score = 0;
 
-    void Update()
+    private void Start()
+    {
+        scoreText = GetComponent<TMP_Text>();
+    }
+
+    private void Update()
     {
         score += Time.deltaTime;
         scoreText.text = Mathf.FloorToInt(score).ToString();

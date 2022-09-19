@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public RoadSpawner spawnManager;
     public Transform feet;
 
     private CharacterController controller;
@@ -18,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private const float gravity = 0.2f;
     private float velocityY = 0f;
+    private float speedBoost = 0f;
 
     private void Start()
     {
@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
     {
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
 
-        // Make player move faster over time
-        float movement = movementSpeed + Time.timeSinceLevelLoad;
+        // Make player move faster as they get coins
+        float movement = movementSpeed + speedBoost;
 
         // Rotate player based on keyboard input first
         transform.Rotate(Vector3.up, rotation * Time.deltaTime);
@@ -69,7 +69,12 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("SpawnTrigger"))
         {
-            spawnManager.TriggerEntered();
+            RoadSpawner.instance.TriggerEntered();
         }
+    }
+
+    public void addSpeed(float amount)
+    {
+        speedBoost += amount;
     }
 }
