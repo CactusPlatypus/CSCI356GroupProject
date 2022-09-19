@@ -22,6 +22,11 @@ namespace PathCreation.Examples {
         MeshRenderer meshRenderer;
         Mesh mesh;
 
+        private void OnEnable()
+        {
+            PathUpdated();
+        }
+
         protected override void PathUpdated () {
             if (pathCreator != null) {
                 AssignMeshComponents ();
@@ -157,6 +162,8 @@ namespace PathCreation.Examples {
                 mesh = new Mesh ();
             }
             meshFilter.sharedMesh = mesh;
+
+            meshHolder.AddComponent<MeshCollider>();
         }
 
         void AssignMaterials () {
