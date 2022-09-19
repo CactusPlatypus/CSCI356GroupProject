@@ -22,7 +22,7 @@ public class RoadSpawner : MonoBehaviour
     // Initial road the player starts on, maybe improve later
     public GameObject initialRoad;
 
-    private const int obstaclesPerRoad = 8;
+    private const int obstaclesPerRoad = 2;
     private const float obstacleHeight = 5f;
 
     private void SpawnObstacles(GameObject road)

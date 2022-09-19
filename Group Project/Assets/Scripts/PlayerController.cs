@@ -11,13 +11,14 @@ public class PlayerController : MonoBehaviour
 
     private const float rotationSpeed = 140f;
     private const float movementSpeed = 60f;
+    private float speedBoost = 0f;
 
     private const float rayDistance = 0.5f;
     //private const float rotationSharpness = 10f;
 
+    private const float jumpForce = 0.07f;
     private const float gravity = 0.2f;
     private float velocityY = 0f;
-    private float speedBoost = 0f;
 
     private void Start()
     {
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown("Jump"))
             {
-                velocityY = 0.05f;
+                velocityY = jumpForce;
             }
         }
         else
