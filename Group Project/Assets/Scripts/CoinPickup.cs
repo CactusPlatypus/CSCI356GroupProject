@@ -13,7 +13,7 @@ public class CoinPickup : MonoBehaviour
         coinLabel = GameObject.FindWithTag("CoinText").GetComponent<CoinText>();
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
-        // Randomize initial coin rotation
+        // Random initial coin rotation
         transform.Rotate(Vector3.forward, Random.Range(0f, 360f));
     }
 
@@ -28,7 +28,7 @@ public class CoinPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             coinLabel.add(1);
-            player.addSpeed(1);
+            player.addSpeed(0.5f);
             Destroy(gameObject);
         }
     }

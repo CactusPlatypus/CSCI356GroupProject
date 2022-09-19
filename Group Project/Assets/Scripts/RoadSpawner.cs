@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using PathCreation.Examples;
 
 public class RoadSpawner : MonoBehaviour
 {
+    // To allow scripts to globally access the road spawner
+    public static RoadSpawner instance;
+
     // Store all road variations
     public GameObject[] roadPrefabs;
 
@@ -15,35 +19,28 @@ public class RoadSpawner : MonoBehaviour
     private const int numRoads = 16;
     private Queue<GameObject> roads = new Queue<GameObject>(numRoads);
 
-    // Initial road the player starts on to delete, remove later
+    // Initial road the player starts on, maybe improve later
     public GameObject initialRoad;
 
-    // How separated objects should be when spawned on the road
-    private const float obstacleSpacingPerRoad = 4f;
+    private const int obstaclesPerRoad = 8;
+    private const float obstacleHeight = 5f;
 
-    // To allow scripts to globally access the road spawner
-    public static RoadSpawner instance;
-
-    private IEnumerator SpawnObstacles(GameObject road)
+    private void SpawnObstacles(GameObject road)
     {
-        // Hack, wait for physics update before getting bounds
-        yield return new WaitForSeconds(0.1f);
+        RoadMeshCreator mesh = road.GetComponentInChildren<RoadMeshCreator>();
 
-        Bounds bounds = road.GetComponentInChildren<MeshCollider>().bounds;
-
-        float numObstacles = (bounds.size.x + bounds.size.z) / obstacleSpacingPerRoad;
-        for (int i = 0; i < numObstacles; i++)
+        for (int i = 0; i < obstaclesPerRoad; i++)
         {
-            float x = Random.Range(bounds.min.x, bounds.max.x);
-            float z = Random.Range(bounds.min.z, bounds.max.z);
-            RaycastHit hit;
+            float location = Random.value;
+            Vector3 pos = mesh.pathCreator.path.GetPointAtTime(location);
+            Quaternion rot = mesh.pathCreator.path.GetRotation(location) * Quaternion.Euler(0f, 0f, 90f);
 
-            if (Physics.Raycast(new Vector3(x, bounds.max.y, z), Vector3.down, out hit, bounds.size.y))
-            {
-                GameObject randomObstacle = obstacles[Random.Range(0, obstacles.Length)];
-                Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
-                Instantiate(randomObstacle, hit.point + Vector3.up * 0.5f, randomRotation, road.transform);
-            }
+            float sidePos = Random.Range(-mesh.roadWidth, mesh.roadWidth);
+            Vector3 sideOffset = rot * Vector3.right * sidePos;
+            Vector3 topOffset = rot * Vector3.up * obstacleHeight;
+
+            GameObject randomObstacle = obstacles[Random.Range(0, obstacles.Length)];
+            Instantiate(randomObstacle, pos + sideOffset + topOffset, rot, road.transform);
         }
     }
     
@@ -59,14 +56,13 @@ public class RoadSpawner : MonoBehaviour
         road.transform.rotation = end.rotation * start.rotation;
         road.transform.position = end.position - start.position;
 
-        // Add obstacles to road using raycast
-        //StartCoroutine(SpawnObstacles(road));
+        // Add obstacles to road
+        //SpawnObstacles(road);
 
         return road;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         instance = this;
 

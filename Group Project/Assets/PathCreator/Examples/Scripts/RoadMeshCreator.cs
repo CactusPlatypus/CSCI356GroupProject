@@ -38,10 +38,7 @@ namespace PathCreation.Examples {
 
         public override Mesh GetMesh()
         {
-            if (pathCreator == null) return null;
-            AssignMeshComponents();
-            AssignMaterials();
-            CreateRoadMesh();
+            PathUpdated();
             return mesh;
         }
 
