@@ -72,9 +72,13 @@ public class PlayerController : MonoBehaviour
         {
             RoadSpawner.instance.TriggerEntered();
         }
+        else if (other.CompareTag("DeathTrigger"))
+        {
+            ScoreManager.instance.Die();
+        }
     }
 
-    public void addSpeed(float amount)
+    public void AddSpeed(float amount)
     {
         speedBoost += amount;
     }

@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class CoinPickup : MonoBehaviour
 {
-    private CoinText coinLabel;
-    private PlayerController player;
     private const float rotationSpeed = 100f;
 
     private void Start()
     {
-        coinLabel = GameObject.FindWithTag("CoinText").GetComponent<CoinText>();
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-
         // Random initial coin rotation
         transform.Rotate(Vector3.forward, Random.Range(0f, 360f));
     }
@@ -25,10 +20,8 @@ public class CoinPickup : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && ScoreManager.instance.AddCoins(1))
         {
-            coinLabel.add(1);
-            player.addSpeed(0.5f);
             Destroy(gameObject);
         }
     }

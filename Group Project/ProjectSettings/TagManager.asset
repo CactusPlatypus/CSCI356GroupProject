@@ -4,10 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - New tag
   - SpawnTrigger
   - Fire
-  - CoinText
+  - DeathTrigger
   layers:
   - Default
   - TransparentFX
