@@ -29,7 +29,8 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         if (dead) return;
-        score += Time.deltaTime;
+        // Score = distance = speed * time
+        score += (player.getMovement() * Time.deltaTime);
         scoreText.text = score.ToString("0");
     }
 

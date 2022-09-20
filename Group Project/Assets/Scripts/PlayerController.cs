@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private const float rotationSpeed = 140f;
     private const float movementSpeed = 60f;
+    private float movement;
     private float speedBoost = 0f;
 
     private const float rayDistance = 0.5f;
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
 
         // Make player move faster as they get coins
-        float movement = movementSpeed + speedBoost;
+        movement = movementSpeed + speedBoost;
 
         // Rotate player based on keyboard input first
         transform.Rotate(Vector3.up, rotation * Time.deltaTime);
@@ -81,5 +82,10 @@ public class PlayerController : MonoBehaviour
     public void AddSpeed(float amount)
     {
         speedBoost += amount;
+    }
+    
+    public float getMovement()
+    {
+        return movement;
     }
 }
