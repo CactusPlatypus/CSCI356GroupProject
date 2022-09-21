@@ -37,6 +37,16 @@ namespace PathCreation.Examples {
             }
         }
 
+        public override Mesh GetMesh()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override GameObject GetMeshHolder()
+        {
+            throw new System.NotImplementedException();
+        }
+
         protected override void PathUpdated () {
             if (pathCreator != null) {
                 Generate ();

@@ -19,7 +19,6 @@ namespace PathCreation.Examples
             PathUpdated();
         }
 
-
         protected virtual void OnDestroy() {
             if (onDestroyed != null) {
                 onDestroyed();
@@ -27,5 +26,7 @@ namespace PathCreation.Examples
         }
 
         protected abstract void PathUpdated();
+        public abstract Mesh GetMesh();
+        public abstract GameObject GetMeshHolder();
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 namespace PathCreation.Examples {
     public class RoadMeshCreator : PathSceneTool {
         [Header ("Road settings")]
-        public float roadWidth = .4f;
-        [Range (0, .5f)]
-        public float thickness = .15f;
+        public float roadWidth = 10f;
+        [Range (0, 10f)]
+        public float thickness = .5f;
         public bool flattenSurface;
 
         [Header ("Material settings")]
@@ -18,9 +18,15 @@ namespace PathCreation.Examples {
         [SerializeField, HideInInspector]
         GameObject meshHolder;
 
+        MeshCollider meshCollider;
         MeshFilter meshFilter;
         MeshRenderer meshRenderer;
         Mesh mesh;
+
+        private void OnEnable()
+        {
+            PathUpdated();
+        }
 
         protected override void PathUpdated () {
             if (pathCreator != null) {
@@ -28,6 +34,17 @@ namespace PathCreation.Examples {
                 AssignMaterials ();
                 CreateRoadMesh ();
             }
+        }
+
+        public override Mesh GetMesh()
+        {
+            PathUpdated();
+            return mesh;
+        }
+
+        public override GameObject GetMeshHolder()
+        {
+            return meshHolder;
         }
 
         void CreateRoadMesh () {
@@ -122,6 +139,7 @@ namespace PathCreation.Examples {
 
             if (meshHolder == null) {
                 meshHolder = new GameObject ("Road Mesh Holder");
+                meshHolder.transform.parent = transform;
             }
 
             meshHolder.transform.rotation = Quaternion.identity;
@@ -129,19 +147,24 @@ namespace PathCreation.Examples {
             meshHolder.transform.localScale = Vector3.one;
 
             // Ensure mesh renderer and filter components are assigned
-            if (!meshHolder.gameObject.GetComponent<MeshFilter> ()) {
-                meshHolder.gameObject.AddComponent<MeshFilter> ();
+            if (!meshHolder.GetComponent<MeshFilter> ()) {
+                meshHolder.AddComponent<MeshFilter> ();
             }
             if (!meshHolder.GetComponent<MeshRenderer> ()) {
-                meshHolder.gameObject.AddComponent<MeshRenderer> ();
+                meshHolder.AddComponent<MeshRenderer> ();
+            }
+            if (!meshHolder.GetComponent<MeshCollider>()) {
+                meshHolder.AddComponent<MeshCollider>();
             }
 
-            meshRenderer = meshHolder.GetComponent<MeshRenderer> ();
-            meshFilter = meshHolder.GetComponent<MeshFilter> ();
+            meshRenderer = meshHolder.GetComponent<MeshRenderer>();
+            meshFilter = meshHolder.GetComponent<MeshFilter>();
+            meshCollider = meshHolder.GetComponent<MeshCollider>();
             if (mesh == null) {
                 mesh = new Mesh ();
             }
             meshFilter.sharedMesh = mesh;
+            meshCollider.sharedMesh = mesh;
         }
 
         void AssignMaterials () {

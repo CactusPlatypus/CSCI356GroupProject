@@ -1,56 +1,91 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PathCreation;
 
 public class PlayerController : MonoBehaviour
 {
-    public PathCreator pathCreator;
-    public Transform bottom;
+    public Transform feet;
 
-    private const float forwardMoveSpeed = 100f;
-    private const float sideMoveSpeed = 50f;
+    private CharacterController controller;
 
-    private const float roadWidth = 4.5f;
-    private const float edgeGap = 0.5f;
+    private const float rotationSpeed = 140f;
+    private const float movementSpeed = 60f;
+    private float movement;
+    private float speedBoost = 0f;
 
-    private float sideOffset = 0f;
-    private float forwardOffset = edgeGap;
+    private const float rayDistance = 0.5f;
+    //private const float rotationSharpness = 10f;
 
-    private float verticalVelocity = 0f;
-    private float verticalOffset = 0f;
+    private const float jumpForce = 0.07f;
+    private const float gravity = 0.2f;
+    private float velocityY = 0f;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        controller = GetComponent<CharacterController>();
+    }
+
     void Update()
     {
-        forwardOffset += Input.GetAxis("Vertical") * Time.deltaTime * forwardMoveSpeed;
-        //forwardOffset = Mathf.Clamp(forwardOffset, edgeGap, pathCreator.path.length - edgeGap);
+        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
 
-        sideOffset += Input.GetAxis("Horizontal") * Time.deltaTime * sideMoveSpeed;
-        sideOffset = Mathf.Clamp(sideOffset, -roadWidth, roadWidth);
+        // Make player move faster as they get coins
+        movement = movementSpeed + speedBoost;
 
-        Vector3 forwardPosition = pathCreator.path.GetPointAtDistance(forwardOffset, EndOfPathInstruction.Loop);
-        Quaternion rotation = pathCreator.path.GetRotationAtDistance(forwardOffset, EndOfPathInstruction.Loop) * Quaternion.Euler(0, 0, 90);
-        Vector3 sidePosition = sideOffset * (rotation * Vector3.right);
-        Vector3 topPosition = verticalOffset * (rotation * Vector3.up);
+        // Rotate player based on keyboard input first
+        transform.Rotate(Vector3.up, rotation * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump"))
+        // Calculate the velocity to know the next expected position
+        Vector3 velocity = transform.forward * movement * Time.deltaTime;
+
+        // Send a ray downwards above the next expected position to find the floor
+        RaycastHit hit;
+        if (Physics.Raycast(feet.position + Vector3.up * rayDistance, Vector3.down, out hit, rayDistance * 2f))
         {
-            verticalVelocity += 0.1f;
-        }
+            // Rotate to sit on the floor, hopefully this doesn't break
+            /*Vector3 newRight = Vector3.Cross(hit.normal, transform.forward);
+            Vector3 newForward = Vector3.Cross(newRight, hit.normal);
+            Quaternion newRotation = Quaternion.LookRotation(newForward, hit.normal);
 
-        if (Mathf.Abs(verticalVelocity) > 0f)
-        {
-            verticalVelocity -= Time.deltaTime * 0.3f;
-            verticalOffset += verticalVelocity;
-            if (verticalOffset <= 0f)
+            // Smooth rotation to avoid bumps due to janky models, note this screws up the raycast
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * rotationSharpness);
+
+            // No idea if position should happen before or after rotation
+            //transform.position += hit.point - feet.position;*/
+
+            if (Input.GetButtonDown("Jump"))
             {
-                verticalVelocity = 0f;
-                verticalOffset = 0f;
+                velocityY = jumpForce;
             }
         }
-        
-        transform.position = forwardPosition + sidePosition - bottom.localPosition + topPosition;
-        transform.rotation = rotation;
+        else
+        {
+            velocityY -= gravity * Time.deltaTime;
+        }
+
+        controller.Move(velocity + Vector3.up * velocityY);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SpawnTrigger"))
+        {
+            RoadSpawner.instance.TriggerEntered();
+        }
+        else if (other.CompareTag("DeathTrigger"))
+        {
+            ScoreManager.instance.Die();
+        }
+    }
+
+    public void AddSpeed(float amount)
+    {
+        speedBoost += amount;
+    }
+    
+    public float getMovement()
+    {
+        return movement;
     }
 }
