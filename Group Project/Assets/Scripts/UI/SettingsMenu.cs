@@ -61,7 +61,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void loadGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("RealGame");
     }
 
     public void quitGame()
