@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private const float rotationSpeed = 140f;
     private float movementSpeed = 50f;
+    private float speedMultiplier = 1f;
 
     // For detecting whether the player can jump
     private const float rayDistance = 0.5f;
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
             velocityY -= gravity * Time.deltaTime;
         }
 
-        Vector3 velocity = transform.forward * movementSpeed * Time.deltaTime;
+        Vector3 velocity = transform.forward * movementSpeed * Time.deltaTime *speedMultiplier;
         controller.Move(velocity + Vector3.up * velocityY);
     }
 
@@ -71,4 +72,16 @@ public class PlayerController : MonoBehaviour
     {
         return movementSpeed;
     }
+
+    public void setSpeedMultiplier(float multiplier, float time)
+    {
+        speedMultiplier = multiplier;
+        Invoke("resetSpeedMultiplier", time);
+    }
+
+    public void resetSpeedMultiplier()
+    {
+        speedMultiplier = 1.0f;
+    }
+
 }

@@ -65,4 +65,12 @@ public class ScoreManager : MonoBehaviour
 
         return true;
     }
+
+
+    public void speedPowerUp(float multiplier, float time)
+    {
+        player.setSpeedMultiplier(multiplier, time);
+    }
+
+
 }
