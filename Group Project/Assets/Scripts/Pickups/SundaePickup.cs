@@ -14,7 +14,7 @@ public class SundaePickup : MonoBehaviour
     {
         // Random initial coin rotation
         transform.Rotate(Vector3.up, Random.Range(0f, 360f));
-        scoreController = GameObject.FindGameObjectWithTag("Player").getComponent<ScoreManager>();
+        scoreController = GameObject.Find("Score Manager").GetComponent<ScoreManager>();
     }
 
     private void Update()

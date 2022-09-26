@@ -2078,7 +2078,7 @@ GameObject:
   - component: {fileID: 641071691}
   m_Layer: 0
   m_Name: ScoreManager
-  m_TagString: ScoreManager
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5818,6 +5818,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8204906684914336575, guid: 0c4e86cbd01b0e84293eae8023b5b47f,
+        type: 3}
+      propertyPath: scoreController
+      value: 
+      objectReference: {fileID: 641071690}
     - target: {fileID: 8527308977126352838, guid: 0c4e86cbd01b0e84293eae8023b5b47f,
         type: 3}
       propertyPath: m_RootOrder
