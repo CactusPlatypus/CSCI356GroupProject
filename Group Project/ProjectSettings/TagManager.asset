@@ -7,6 +7,7 @@ TagManager:
   - SpawnTrigger
   - Fire
   - DeathTrigger
+  - ScoreManager
   layers:
   - Default
   - TransparentFX

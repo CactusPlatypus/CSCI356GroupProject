@@ -8,17 +8,19 @@ public class SundaePickup : MonoBehaviour
     private const float rotationSpeed = 100f;
     [SerializeField] private float speedMultiplier = 1.5f;
     [SerializeField] private float time = 3.0f;
+    [SerializeField] private GameObject particle;
 
     private void Start()
     {
         // Random initial coin rotation
-        transform.Rotate(Vector3.forward, Random.Range(0f, 360f));
+        transform.Rotate(Vector3.up, Random.Range(0f, 360f));
+        scoreController = GameObject.FindGameObjectWithTag("Player").getComponent<ScoreManager>();
     }
 
     private void Update()
     {
         // Make coin spin for fun
-        transform.Rotate(Vector3.forward, Time.deltaTime * rotationSpeed);
+        transform.Rotate(Vector3.up, Time.deltaTime * rotationSpeed);
     }
 
     void OnTriggerEnter(Collider other)
@@ -26,6 +28,7 @@ public class SundaePickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             scoreController.speedPowerUp(speedMultiplier, time);
+            Instantiate(particle);
             Destroy(gameObject);
         }
     }
