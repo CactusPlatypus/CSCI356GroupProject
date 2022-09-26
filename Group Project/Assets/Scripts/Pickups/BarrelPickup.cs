@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SundaePickup : MonoBehaviour
+public class BarrelPickup : MonoBehaviour
 {
     [SerializeField] private ScoreManager scoreController;
     private const float rotationSpeed = 100f;
     [SerializeField] private float speedMultiplier = 1.5f;
-    [SerializeField] private float time = 3.0f;
-    [SerializeField] private GameObject particle;
+    [SerializeField] private float time = 9.0f;
+    [SerializeField] private GameObject spinningBarrels;
 
     private void Start()
     {
@@ -27,9 +27,14 @@ public class SundaePickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            scoreController.speedPowerUp(speedMultiplier, time);
-            scoreController.powerUpPopUp("SILLY SUNDAE!", time - 1);
-            Instantiate(particle);
+            
+            scoreController.powerUpPopUp("BONKERS BARRELS!", time - 1);
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            GameObject barrels =  Instantiate(spinningBarrels, player.transform);
+            barrels.GetComponent<BarrelSpin>().setLifeTime(time);
+            barrels.transform.position = player.transform.position;
+
+   
             Destroy(gameObject);
         }
     }

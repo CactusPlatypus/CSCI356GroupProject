@@ -12,6 +12,8 @@ public class ScoreManager : MonoBehaviour
     public TMP_Text scoreText;
     public AudioSource music;
 
+    public PowerupText powerupTXT;
+
     private PlayerController player;
     private AudioSource coinSound;
 
@@ -66,6 +68,10 @@ public class ScoreManager : MonoBehaviour
         return true;
     }
 
+    public void powerUpPopUp(string text, float time)
+    {
+        powerupTXT.showText(text, time);
+    }
 
     public void speedPowerUp(float multiplier, float time)
     {
