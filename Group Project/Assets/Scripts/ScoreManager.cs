@@ -29,8 +29,7 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         if (dead) return;
-        // Score = distance = speed * time
-        score += (player.getMovement() * Time.deltaTime);
+        score += (player.GetSpeed() * Time.deltaTime);
         scoreText.text = score.ToString("0");
     }
 
@@ -48,7 +47,7 @@ public class ScoreManager : MonoBehaviour
     {
         // Prevent timescale affecting next scene
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     // Returns true if the player is alive to collect coins

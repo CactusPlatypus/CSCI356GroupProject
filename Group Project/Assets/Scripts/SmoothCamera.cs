@@ -5,7 +5,7 @@ public class SmoothCamera : MonoBehaviour
 {
     public Transform target;
 
-    private Vector3 offset = new Vector3(0f, 6f, 3f);
+    private Vector3 offset = new Vector3(0f, 4f, 3f);
     private float positionSharpness = 5f;
     private float rotationSharpness = 8f;
 

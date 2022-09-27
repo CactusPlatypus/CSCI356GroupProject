@@ -21,6 +21,6 @@ public class PauseMenu : MonoBehaviour
     {
         // Prevent pausing affecting the main menu
         Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("MainMenu");
     }
 }

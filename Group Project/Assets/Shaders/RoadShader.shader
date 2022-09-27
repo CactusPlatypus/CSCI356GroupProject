@@ -51,7 +51,7 @@
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             float distToCenter = abs(0.5 - IN.uv_MainTex.x);
-            float jaggedEdges = noise(IN.worldPos) * 0.5;
+            float jaggedEdges = noise(IN.worldPos) * 0.2;
             float mult = distToCenter * 32 - 12 + jaggedEdges;
             fixed4 c = lerp(_InnerColor * noise2(IN.worldPos) * 0.1, _OuterColor, clamp(mult, 0, 1));
 
