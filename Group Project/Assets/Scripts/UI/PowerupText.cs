@@ -10,16 +10,15 @@ public class PowerupText : MonoBehaviour
     float maxTextSize = 28.3f;
     float minTextSize = 0.0f;
     float timeElapsed = 0.0f;
-    float powerupTime = 0.0f;
+    float powerupTime = 2.0f;
     float fontsize = 0;
 
-    public void showText(string text, float time)
+    public void showText(string text)
     {
         powerupText.text = text;
         powerupText.fontSize = 0;
-        powerupTime = time;
         powerupCanvas.SetActive(true);
-        Invoke("hideText", time);
+        Invoke("hideText", 4.0f);
         fontsize = 0.0f;
         timeElapsed = 0.0f;
         

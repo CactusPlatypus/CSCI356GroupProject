@@ -19,6 +19,7 @@ public class ScoreManager : MonoBehaviour
 
     private int coins = 0;
     private float score = 0f;
+    private float scoreMultiplier = 1.0f;
     private bool dead = false;
 
     private void Start()
@@ -31,7 +32,7 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         if (dead) return;
-        score += (player.GetSpeed() * Time.deltaTime);
+        score += (player.GetSpeed() * Time.deltaTime * scoreMultiplier);
         scoreText.text = score.ToString("0");
     }
 
@@ -57,7 +58,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (dead) return false;
 
-        coins += count;
+        coins += count * (int)scoreMultiplier;
         coinText.text = coins.ToString();
 
         player.AddSpeed(count * 0.5f);
@@ -68,9 +69,9 @@ public class ScoreManager : MonoBehaviour
         return true;
     }
 
-    public void powerUpPopUp(string text, float time)
+    public void powerUpPopUp(string text)
     {
-        powerupTXT.showText(text, time);
+        powerupTXT.showText(text);
     }
 
     public void speedPowerUp(float multiplier, float time)
@@ -78,5 +79,15 @@ public class ScoreManager : MonoBehaviour
         player.setSpeedMultiplier(multiplier, time);
     }
 
+    public void setScoreMultiplier(float multi, float time)
+    {
+        scoreMultiplier = multi;
+        Invoke("resetScoreMultiplier", time);
+    }
+
+    public void resetScoreMultiplier()
+    {
+        scoreMultiplier = 1.0f;
+    }
 
 }

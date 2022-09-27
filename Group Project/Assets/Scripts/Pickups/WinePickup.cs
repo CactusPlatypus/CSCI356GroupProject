@@ -28,7 +28,7 @@ public class WinePickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            scoreController.powerUpPopUp("Wine Warp!", time - 1);
+            scoreController.powerUpPopUp("Wine Warp!");
             Instantiate(wineWarp);
 
 

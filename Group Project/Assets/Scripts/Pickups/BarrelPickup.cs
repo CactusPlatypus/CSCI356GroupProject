@@ -28,7 +28,7 @@ public class BarrelPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             
-            scoreController.powerUpPopUp("BONKERS BARRELS!", time - 1);
+            scoreController.powerUpPopUp("BONKERS BARRELS!");
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             GameObject barrels =  Instantiate(spinningBarrels, player.transform);
             barrels.GetComponent<BarrelSpin>().setLifeTime(time);
