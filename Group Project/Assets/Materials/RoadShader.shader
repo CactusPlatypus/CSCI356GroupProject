@@ -51,10 +51,13 @@
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             float distToCenter = abs(0.5 - IN.uv_MainTex.x);
-            float jaggedEdges = noise(IN.worldPos) * 0.2;
+            float jaggedEdges = noise(IN.worldPos) * 0.5;
             float mult = distToCenter * 32 - 12 + jaggedEdges;
-            fixed4 c = lerp(_InnerColor * noise2(IN.worldPos) * 0.1, _OuterColor, clamp(mult, 0, 1));
 
+            float circleDist = distance(fixed2(0.5, 0.5), frac(IN.worldPos.xz));
+            float circle = saturate(lerp(4.0 + noise2(IN.worldPos), -14.0, circleDist));
+
+            fixed4 c = lerp(_InnerColor + circle * 0.1, _OuterColor, clamp(mult, 0, 1));
             o.Albedo = c.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;

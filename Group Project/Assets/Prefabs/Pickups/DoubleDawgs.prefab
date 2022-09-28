@@ -89,7 +89,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -106,8 +106,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.91736734
-  m_Height: 1.8347347
+  m_Radius: 1
+  m_Height: 0
   m_Direction: 1
   m_Center: {x: 0.13908088, y: 0.22024775, z: 0}
 --- !u!114 &3228682827747503182
@@ -122,8 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a72b64bbf739b2408dc422b3eab8231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreController: {fileID: 0}
-  scoreMultiplier: 2
   time: 10
 --- !u!1001 &3228682827379647738
 PrefabInstance:

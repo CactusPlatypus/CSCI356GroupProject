@@ -4,37 +4,34 @@ using UnityEngine;
 
 public class BarrelPickup : MonoBehaviour
 {
-    [SerializeField] private ScoreManager scoreController;
-    private const float rotationSpeed = 100f;
-    [SerializeField] private float speedMultiplier = 1.5f;
-    [SerializeField] private float time = 9.0f;
+    private const float spinSpeed = 100f;
+    [SerializeField] private float lifetime = 9f;
     [SerializeField] private GameObject spinningBarrels;
 
     private void Start()
     {
-        // Random initial coin rotation
+        // Random initial powerup rotation
         transform.Rotate(Vector3.up, Random.Range(0f, 360f));
-        scoreController = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
     }
 
     private void Update()
     {
-        // Make coin spin for fun
-        transform.Rotate(Vector3.up, Time.deltaTime * rotationSpeed);
+        // Make powerup spin for fun
+        transform.Rotate(Vector3.up, Time.deltaTime * spinSpeed);
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            
-            scoreController.powerUpPopUp("BONKERS BARRELS!");
+            ScoreManager.instance.PowerUpPopup("BONKERS BARRELS!");
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            GameObject barrels =  Instantiate(spinningBarrels, player.transform);
-            barrels.GetComponent<BarrelSpin>().setLifeTime(time);
-            barrels.transform.position = player.transform.position;
 
-   
+            GameObject barrels = Instantiate(spinningBarrels, player.transform);
+            barrels.transform.localPosition = Vector3.zero;
+            // Destroy barrels after lifetime expires
+            Destroy(barrels, lifetime);
+
             Destroy(gameObject);
         }
     }

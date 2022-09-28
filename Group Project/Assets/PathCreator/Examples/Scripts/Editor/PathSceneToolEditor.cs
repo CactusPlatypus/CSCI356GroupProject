@@ -10,7 +10,8 @@ namespace PathCreation.Examples
     public class PathSceneToolEditor : Editor
     {
         protected PathSceneTool pathTool;
-        bool isSubscribed;
+        private bool isSubscribed;
+        private const string bakeDir = "Assets/Prefabs/Roads/BakedRoads";
 
         public override void OnInspectorGUI()
         {
@@ -54,14 +55,14 @@ namespace PathCreation.Examples
                     MeshUtility.Optimize(mesh);
                     
                     // Create folder for storing baked road prefabs
-                    if (!Directory.Exists("Assets/Prefabs/BakedRoads"))
+                    if (!Directory.Exists(bakeDir))
                     {
-                        AssetDatabase.CreateFolder("Assets/Prefabs", "BakedRoads");
+                        Directory.CreateDirectory(bakeDir);
                     }
 
                     // Save mesh into folder
                     string name = pathTool.gameObject.name;
-                    AssetDatabase.CreateAsset(mesh, "Assets/Prefabs/BakedRoads/" + name + ".asset");
+                    AssetDatabase.CreateAsset(mesh, Path.Combine(bakeDir, name + ".asset"));
                     AssetDatabase.SaveAssets();
                     
                     // Copy mesh rendering stuff to a new game object
@@ -86,7 +87,7 @@ namespace PathCreation.Examples
                 {
                     // Delete saved mesh
                     string name = pathTool.gameObject.name;
-                    string path = "Assets/Prefabs/BakedRoads/" + name + ".asset";
+                    string path = Path.Combine(bakeDir, name + ".asset");
                     if (File.Exists(path))
                     {
                         AssetDatabase.DeleteAsset(path);

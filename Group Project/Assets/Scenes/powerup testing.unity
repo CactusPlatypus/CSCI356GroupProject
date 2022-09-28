@@ -2243,11 +2243,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2785ee7d0c2251c468c20c649d185757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadUI: {fileID: 884877766}
+  music: {fileID: 54394472}
+  UI: {fileID: 1984325649}
   coinText: {fileID: 1712631192}
   scoreText: {fileID: 37910211}
-  music: {fileID: 54394472}
-  powerupTXT: {fileID: 776380031}
+  deadScoreText: {fileID: 0}
+  powerupText: {fileID: 776380031}
 --- !u!82 &641071691
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2691,7 +2692,7 @@ GameObject:
   - component: {fileID: 776380032}
   - component: {fileID: 776380031}
   m_Layer: 0
-  m_Name: PowerupUI
+  m_Name: Powerup UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

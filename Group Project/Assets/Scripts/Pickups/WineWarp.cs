@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class WineWarp : MonoBehaviour
 {
-    float length = 3.0f;
-    float minSpeed = 0.01f;
-    float maxSpeed = 1.0f;
-    float speed = 0.0f;
-    float elapsedTime = 0.0f;
+    private const float length = 3f;
+    private const float minSpeed = 0.01f;
+    private const float maxSpeed = 1f;
+    private float elapsedTime = 0f;
 
     public void Start()
     {
@@ -16,19 +15,17 @@ public class WineWarp : MonoBehaviour
     }
     void Update()
     {
-        if (elapsedTime < length/2)
+        if (elapsedTime < length / 2f)
         {
-            speed = Mathf.Lerp(maxSpeed, minSpeed, elapsedTime / (length/2));
+            float speed = Mathf.Lerp(maxSpeed, minSpeed, elapsedTime / (length / 2f));
             Time.timeScale = speed;
             elapsedTime += Time.deltaTime;
-          
         }
         else
         {
-            speed = Mathf.Lerp(minSpeed, maxSpeed, elapsedTime / length);
+            float speed = Mathf.Lerp(minSpeed, maxSpeed, elapsedTime / length);
             Time.timeScale = speed;
             elapsedTime += Time.deltaTime;
         }
-        
     }
 }

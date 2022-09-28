@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SundaePickup : MonoBehaviour
 {
-    [SerializeField] private ScoreManager scoreController;
     private const float rotationSpeed = 100f;
     [SerializeField] private float speedMultiplier = 1.5f;
     [SerializeField] private float time = 3.0f;
@@ -12,14 +11,13 @@ public class SundaePickup : MonoBehaviour
 
     private void Start()
     {
-        // Random initial coin rotation
+        // Random initial powerup rotation
         transform.Rotate(Vector3.up, Random.Range(0f, 360f));
-        scoreController = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
     }
 
     private void Update()
     {
-        // Make coin spin for fun
+        // Make powerup spin for fun
         transform.Rotate(Vector3.up, Time.deltaTime * rotationSpeed);
     }
 
@@ -27,8 +25,8 @@ public class SundaePickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            scoreController.speedPowerUp(speedMultiplier, time);
-            scoreController.powerUpPopUp("SILLY SUNDAE!");
+            ScoreManager.instance.SpeedPowerUp(speedMultiplier, time);
+            ScoreManager.instance.PowerUpPopup("SILLY SUNDAE!");
             Instantiate(particle);
             Destroy(gameObject);
         }

@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
             velocityY -= gravity * Time.deltaTime;
         }
 
-        Vector3 velocity = transform.forward * movementSpeed * Time.deltaTime *speedMultiplier;
+        Vector3 velocity = transform.forward * movementSpeed * speedMultiplier * Time.deltaTime;
         controller.Move(velocity + Vector3.up * velocityY);
     }
 
@@ -73,15 +73,14 @@ public class PlayerController : MonoBehaviour
         return movementSpeed;
     }
 
-    public void setSpeedMultiplier(float multiplier, float time)
+    public void SetSpeedMultiplier(float multiplier, float time)
     {
         speedMultiplier = multiplier;
-        Invoke("resetSpeedMultiplier", time);
+        Invoke("ResetSpeedMultiplier", time);
     }
 
-    public void resetSpeedMultiplier()
+    private void ResetSpeedMultiplier()
     {
-        speedMultiplier = 1.0f;
+        speedMultiplier = 1f;
     }
-
 }
