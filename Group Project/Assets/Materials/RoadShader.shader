@@ -2,11 +2,10 @@
 {
     Properties
     {
-        _InnerDotColor("Inner Dot Color", Color) = (0.5,0.5,0.5,1)
-        _InnerBaseColor("Inner Base Color", Color) = (0.12,0.12,0.12,1)
+        _InnerColor("Inner Color", Color) = (0.0,0.0,0.0,1)
         _OuterColor("Outer Color", Color) = (1,0.8,0.20,1)
-        _Glossiness("Smoothness", Range(0,1)) = 0.5
-        _Metallic("Metallic", Range(0,1)) = 0.0
+        _Glossiness("Smoothness", Range(0,1)) = 0.25
+        _Metallic("Metallic", Range(0,1)) = 0.2
     }
         SubShader
     {
@@ -28,8 +27,7 @@
 
         half _Glossiness;
         half _Metallic;
-        fixed4 _InnerBaseColor;
-        fixed4 _InnerDotColor;
+        fixed4 _InnerColor;
         fixed4 _OuterColor;
 
         // Required to pass texture coordinates to surface shader
@@ -53,18 +51,22 @@
         {
             // Create grid of circles using mod 1 distance to 0.5
             float circleGrid = length(frac(IN.worldPos.xz) - 0.5);
-            float circleMix = lerp(-4.0 + noise2(IN.worldPos), 14.0, circleGrid);
+            float circleMix = lerp(2.0 - noise2(IN.worldPos), -12.0, circleGrid);
 
             // Mix circles with inner color
-            fixed4 inner = lerp(_InnerDotColor, _InnerBaseColor, saturate(circleMix));
+            fixed4 inner = _InnerColor + saturate(circleMix) * 0.07;
 
             // Create outer border using distance to 0.5
             float distToCenter = abs(IN.texcoord.x - 0.5);
             float wobblyEdges = noise(IN.worldPos) * 0.5;
             float outerMix = distToCenter * 32 - 12 + wobblyEdges;
 
+            // Create more circles for fun
+            circleGrid = length(frac(IN.worldPos.xz * 1.5) - 0.5);
+            circleMix = lerp(2.0 + noise2(IN.worldPos * 3.0), -12.0, circleGrid);
+
             // Mix inner color with outer color
-            fixed4 outer = lerp(inner, _OuterColor, saturate(outerMix));
+            fixed4 outer = lerp(inner, _OuterColor, saturate(outerMix)) - saturate(circleMix) * 0.05;
 
             o.Albedo = outer.rgb;
             o.Metallic = _Metallic;
