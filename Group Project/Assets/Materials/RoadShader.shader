@@ -2,8 +2,8 @@
 {
     Properties
     {
-        _MainTex("Base (RGB)", 2D) = "white" {}
-        _InnerColor("Inner Color", Color) = (0.12,0.12,0.12,1)
+        _InnerDotColor("Inner Dot Color", Color) = (0.5,0.5,0.5,1)
+        _InnerBaseColor("Inner Base Color", Color) = (0.12,0.12,0.12,1)
         _OuterColor("Outer Color", Color) = (1,0.8,0.20,1)
         _Glossiness("Smoothness", Range(0,1)) = 0.5
         _Metallic("Metallic", Range(0,1)) = 0.0
@@ -15,28 +15,29 @@
 
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows
+        #pragma surface surf Standard fullforwardshadows vertex:vert
 
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
 
         struct Input
         {
-            float2 uv_MainTex;
-            float3 worldPos;
+            float2 texcoord; // Set in vertex shader
+            float3 worldPos; // Set automatically
         };
 
         half _Glossiness;
         half _Metallic;
-        fixed4 _InnerColor;
+        fixed4 _InnerBaseColor;
+        fixed4 _InnerDotColor;
         fixed4 _OuterColor;
 
-        // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-        // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-        // #pragma instancing_options assumeuniformscaling
-        UNITY_INSTANCING_BUFFER_START(Props)
-            // put more per-instance properties here
-        UNITY_INSTANCING_BUFFER_END(Props)
+        // Required to pass texture coordinates to surface shader
+        void vert(inout appdata_full v, out Input o)
+        {
+            UNITY_INITIALIZE_OUTPUT(Input, o);
+            o.texcoord = v.texcoord;
+        }
 
         float noise(float3 pos)
         {
@@ -50,18 +51,25 @@
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            float distToCenter = abs(0.5 - IN.uv_MainTex.x);
-            float jaggedEdges = noise(IN.worldPos) * 0.5;
-            float mult = distToCenter * 32 - 12 + jaggedEdges;
+            // Create grid of circles using mod 1 distance to 0.5
+            float circleGrid = length(frac(IN.worldPos.xz) - 0.5);
+            float circleMix = lerp(-4.0 + noise2(IN.worldPos), 14.0, circleGrid);
 
-            float circleDist = distance(fixed2(0.5, 0.5), frac(IN.worldPos.xz));
-            float circle = saturate(lerp(4.0 + noise2(IN.worldPos), -14.0, circleDist));
+            // Mix circles with inner color
+            fixed4 inner = lerp(_InnerDotColor, _InnerBaseColor, saturate(circleMix));
 
-            fixed4 c = lerp(_InnerColor + circle * 0.1, _OuterColor, clamp(mult, 0, 1));
-            o.Albedo = c.rgb;
+            // Create outer border using distance to 0.5
+            float distToCenter = abs(IN.texcoord.x - 0.5);
+            float wobblyEdges = noise(IN.worldPos) * 0.5;
+            float outerMix = distToCenter * 32 - 12 + wobblyEdges;
+
+            // Mix inner color with outer color
+            fixed4 outer = lerp(inner, _OuterColor, saturate(outerMix));
+
+            o.Albedo = outer.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
-            o.Alpha = c.a;
+            o.Alpha = outer.a;
         }
         ENDCG
     }
