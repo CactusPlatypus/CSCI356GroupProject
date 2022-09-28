@@ -130,6 +130,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3228682827747503177}
     m_Modifications:
+    - target: {fileID: -9195035949127982443, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -9195035949127982443, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d78c3de504e165847bcd3c517eb2932b,
         type: 3}
       propertyPath: m_RootOrder
@@ -200,10 +210,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -19.81
       objectReference: {fileID: 0}
+    - target: {fileID: -4630273009235820646, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4630273009235820646, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d78c3de504e165847bcd3c517eb2932b,
         type: 3}
       propertyPath: m_Name
       value: hotDog
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905886938873270603, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905886938873270603, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d78c3de504e165847bcd3c517eb2932b, type: 3}
@@ -220,6 +250,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3228682827747503177}
     m_Modifications:
+    - target: {fileID: -9195035949127982443, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -9195035949127982443, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d78c3de504e165847bcd3c517eb2932b,
         type: 3}
       propertyPath: m_RootOrder
@@ -290,10 +330,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 31.34
       objectReference: {fileID: 0}
+    - target: {fileID: -4630273009235820646, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4630273009235820646, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d78c3de504e165847bcd3c517eb2932b,
         type: 3}
       propertyPath: m_Name
       value: hotDog (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905886938873270603, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905886938873270603, guid: d78c3de504e165847bcd3c517eb2932b,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d78c3de504e165847bcd3c517eb2932b, type: 3}

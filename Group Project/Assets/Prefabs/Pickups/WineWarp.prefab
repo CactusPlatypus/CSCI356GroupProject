@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5977070370171002479}
   - component: {fileID: 6810547350249171589}
-  - component: {fileID: 3051999095814321807}
+  - component: {fileID: 9145827815053576365}
   m_Layer: 0
   m_Name: wineWhite
   m_TagString: Untagged
@@ -163,7 +163,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7277432881070535672}
   m_Mesh: {fileID: 4285055768096029958, guid: 5cf9d5d63c4ef764fb557239430a5792, type: 3}
---- !u!23 &3051999095814321807
+--- !u!23 &9145827815053576365
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,7 +181,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8760236694327800134, guid: 5cf9d5d63c4ef764fb557239430a5792, type: 3}
+  - {fileID: 4310586713465477566, guid: 5cf9d5d63c4ef764fb557239430a5792, type: 3}
+  - {fileID: 1151844921754575795, guid: 5cf9d5d63c4ef764fb557239430a5792, type: 3}
+  - {fileID: -2609809028551464901, guid: 5cf9d5d63c4ef764fb557239430a5792, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

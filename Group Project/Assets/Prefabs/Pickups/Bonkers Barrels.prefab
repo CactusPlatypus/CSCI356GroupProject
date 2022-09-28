@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1644488085609069432}
   - component: {fileID: 1249991125091631467}
   - component: {fileID: 1249991125091631465}
-  - component: {fileID: 5099644406831390163}
   - component: {fileID: 2767733099936154803}
+  - component: {fileID: 2871229824002114254}
   - component: {fileID: 1294188656865565929}
   m_Layer: 0
   m_Name: Bonkers Barrels
@@ -64,7 +64,15 @@ MonoBehaviour:
   lifetime: 9
   spinningBarrels: {fileID: 226451591511829889, guid: 312fe89b9d042dc46aad5637a048445b,
     type: 3}
---- !u!23 &5099644406831390163
+--- !u!33 &2767733099936154803
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132935597045014978}
+  m_Mesh: {fileID: -2643173543783292932, guid: dda3127cf9edcf04e83677d18aa86c68, type: 3}
+--- !u!23 &2871229824002114254
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,7 +90,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -9060576372475732747, guid: dda3127cf9edcf04e83677d18aa86c68, type: 3}
+  - {fileID: -8946930300590681946, guid: dda3127cf9edcf04e83677d18aa86c68, type: 3}
+  - {fileID: -3092847324252717431, guid: dda3127cf9edcf04e83677d18aa86c68, type: 3}
+  - {fileID: -2609809028551464901, guid: dda3127cf9edcf04e83677d18aa86c68, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,14 +113,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &2767733099936154803
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132935597045014978}
-  m_Mesh: {fileID: -2643173543783292932, guid: dda3127cf9edcf04e83677d18aa86c68, type: 3}
 --- !u!108 &1294188656865565929
 Light:
   m_ObjectHideFlags: 0

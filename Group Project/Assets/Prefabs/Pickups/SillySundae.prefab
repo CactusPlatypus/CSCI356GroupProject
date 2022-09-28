@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5984985583616181739}
   - component: {fileID: 568192313701464859}
-  - component: {fileID: 9121978977419469047}
+  - component: {fileID: 8189543271830474019}
   m_Layer: 0
   m_Name: straw
   m_TagString: Untagged
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 817411355995275870}
   m_Mesh: {fileID: 385320848296833654, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
---- !u!23 &9121978977419469047
+--- !u!23 &8189543271830474019
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3274266250313179788, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
+  - {fileID: 1151844921754575795, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1143918323664596762}
   - component: {fileID: 2448684988541210850}
-  - component: {fileID: 3177786662297580182}
+  - component: {fileID: 4296637054527999265}
   m_Layer: 0
   m_Name: sundae
   m_TagString: Untagged
@@ -119,7 +119,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5554488303701556331}
   m_Mesh: {fileID: 2315602718724120335, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
---- !u!23 &3177786662297580182
+--- !u!23 &4296637054527999265
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,7 +137,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2352631655104707110, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
+  - {fileID: -3963241562183589234, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
+  - {fileID: -4523872500402983279, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
+  - {fileID: -3092847324252717431, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -168,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7635414217830362070}
   - component: {fileID: 7609942338903893730}
-  - component: {fileID: 3080180832965670994}
+  - component: {fileID: 4043791743327547896}
   m_Layer: 0
   m_Name: cherry
   m_TagString: Untagged
@@ -198,7 +200,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8127496261488668945}
   m_Mesh: {fileID: -5926517772586709617, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
---- !u!23 &3080180832965670994
+--- !u!23 &4043791743327547896
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,7 +218,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5160343292832836381, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
+  - {fileID: 7211448773848044386, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
+  - {fileID: 1151844921754575795, guid: 82d24c78a6d0834458dc5bdac20a01ae, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
