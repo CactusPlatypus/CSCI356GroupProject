@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -7,10 +8,11 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
-    public GameObject deadUI;
     public TMP_Text coinText;
     public TMP_Text scoreText;
     public AudioSource music;
+    public GameObject UI;
+    public TMP_Text deadScoreText;
 
     private PlayerController player;
     private AudioSource coinSound;
@@ -18,7 +20,9 @@ public class ScoreManager : MonoBehaviour
     private int coins = 0;
     private float score = 0f;
     private bool dead = false;
-
+    private float countDuration = 0.5f;
+    private float coinWorth = 50;
+    
     private void Start()
     {
         instance = this;
@@ -39,8 +43,39 @@ public class ScoreManager : MonoBehaviour
 
         dead = true;
         Time.timeScale = 0.25f;
-        deadUI.SetActive(true);
+        
+        Transform deadUI = UI.transform.GetChild(0);
+        Transform gameUI = UI.transform.GetChild(1);
+        deadUI.gameObject.SetActive(true);
+        gameUI.gameObject.SetActive(false);
+        
+        float totalScore = score + (coins * coinWorth);
+        print(PlayerPrefs.GetFloat("highscore", 0));
+        if (PlayerPrefs.GetFloat("highscore", 0) < totalScore)
+        {
+            PlayerPrefs.SetFloat("highscore", totalScore);
+            Transform deadScoreGroup = deadUI.GetChild(3);
+            deadScoreGroup.GetChild(0).gameObject.SetActive(true);
+            deadScoreGroup.GetChild(1).gameObject.SetActive(false);
+        }
+
+        StartCoroutine("CountTo", coins);
         music.enabled = false;
+    }
+
+    IEnumerator CountTo(int target)
+    {
+        int start = 0;
+        for (float timer = 0; timer < countDuration; timer += Time.deltaTime)
+        {
+            float progress = timer / countDuration;
+            coins = (int)Mathf.Lerp(start, target, progress);
+            deadScoreText.text = (score + (coins * coinWorth)).ToString("0");
+            yield return null;
+        }
+
+        coins = target;
+        deadScoreText.text = (score + (coins * coinWorth)).ToString("0");
     }
 
     public void Respawn()
