@@ -1,8 +1,0 @@
-# Created by Kenney (www.kenney.nl)
-
-newmtl brownLight
-Kd 0.990566 0.8227515 0.6401299
-
-newmtl orange
-Kd 1 0.4509804 0.2274509
-
