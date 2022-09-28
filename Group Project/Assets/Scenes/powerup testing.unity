@@ -337,7 +337,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &54394468
 GameObject:
@@ -1294,7 +1294,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 59.557003, y: -426.435, z: -521.173}
 --- !u!1 &410359964
 GameObject:
@@ -2229,7 +2229,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &641071690
 MonoBehaviour:
@@ -5651,75 +5651,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1001 &1779902839
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7151895928748193529, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_Name
-      value: WineWarpPickup
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497213380351585347, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497213380351585347, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.8092933
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497213380351585347, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497213380351585347, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 73.44034
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497213380351585347, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071479
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497213380351585347, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.09856518
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497213380351585347, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.69345814
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497213380351585347, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.096657045
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497213380351585347, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 15.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497213380351585347, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 88.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 7497213380351585347, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fcacbf1fff6fefc498c3b6b607b3d0d9, type: 3}
 --- !u!1001 &1805269001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5750,7 +5681,7 @@ PrefabInstance:
     - target: {fileID: 6630724851575927148, guid: 4e2c905a12d4c2b4485e4ea7084b00c2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6630724851575927148, guid: 4e2c905a12d4c2b4485e4ea7084b00c2,
         type: 3}
@@ -6639,7 +6570,7 @@ Transform:
   - {fileID: 776380030}
   - {fileID: 957243534}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2019183013
 GameObject:
