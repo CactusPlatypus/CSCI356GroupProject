@@ -33,11 +33,22 @@ public class ObstacleSpawner : MonoBehaviour
 
 
 
-    void SpawnObstacles()
+    public void SpawnObstacles(GameObject roadPrefab)
     {
+        Debug.Log("Spawned");
+        Debug.Log("New road = " + roadPrefab.name);
         SetupActualPercent();
         spawnedObjects.Clear();
         int spawnCount = Random.Range(minObstacleCount, maxObstacleCount);
+
+        GameObject newGameobjectParent = new GameObject("obstacleParent");
+        newGameobjectParent.transform.parent = roadPrefab.transform;
+
+
+        PathCreation.PathCreator path = roadPrefab.GetComponentInChildren<PathCreation.PathCreator>();
+        roadWidth = roadPrefab.GetComponentInChildren<PathCreation.Examples.RoadMeshCreator>().roadWidth;
+        roadLength = path.path.length;
+
 
         for (int i = 0; i < spawnCount; i++)
         {
@@ -46,17 +57,19 @@ public class ObstacleSpawner : MonoBehaviour
 
             
             //Vector3 spawnLocation = spawnStart + new Vector3(randomX, 0, randomZ);
-            Vector3 spawnLocation = GetSpawnLocation(randomZ, randomX);
-            
-            
-            SpawnObject(spawnLocation);
+            Vector3 spawnLocation = GetSpawnLocation(randomZ, randomX, path);
+            Quaternion rot = path.path.GetRotationAtDistance(randomZ) * Quaternion.Euler(0f, 0f, 90f);
+
+
+            //SpawnObject(spawnLocation,rot, newGameobjectParent.transform);
+            SpawnObject(roadPrefab);
         }
         Debug.Log("Pre Clear");
-        PrintLists();
+        //PrintLists();
         spawnedObjectsList.Add(spawnedObjects);
         spawnedObjects = new List<GameObject>();
         Debug.Log("Post Clear");
-        PrintLists();
+        //PrintLists();
     }
 
 
@@ -179,14 +192,42 @@ public class ObstacleSpawner : MonoBehaviour
         return spawnLocation;
     }
 
-    void SpawnObject(Vector3 location)
+    Vector3 GetSpawnLocation(float distanceTravelled, float roadPosition, PathCreation.PathCreator path)
+    {
+        Vector3 spawnLocation = new Vector3();
+
+        //depends on implementation
+
+
+        //for straight road
+        //spawnLocation = spawnStart + new Vector3(roadPosition, 0, distanceTravelled);
+
+        //for spline
+
+        
+        Vector3 splineZ = path.path.GetPointAtDistance(distanceTravelled);
+        Quaternion splineX = path.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0f, 0f, 90f);
+
+        Vector3 sideOffset = splineX * Vector3.right * distanceTravelled;
+        Vector3 topOffset = splineX * Vector3.up * 1;
+
+        Vector3 sideways = splineZ + sideOffset + topOffset;
+
+        //spawnLocation = spawnStart + new Vector3(splineZ, 0, splineX);
+
+
+
+        return sideways;
+    }
+
+    void SpawnObject(Vector3 location, Quaternion rot, Transform parentTransform)
     {
         GameObject newObject = null;
         if (obstaclePrefabs.Count > 0)
         {
 
             int randomObstacle = Random.Range(0, obstaclePrefabs.Count);
-            newObject = Instantiate(obstaclePrefabs[randomObstacle]);
+            newObject = Instantiate(obstaclePrefabs[randomObstacle], parentTransform);
             //newObject = Instantiate(PercentSpawn());
 
             
@@ -199,6 +240,32 @@ public class ObstacleSpawner : MonoBehaviour
         spawnedObjects.Add(newObject);
         if (obstacleParent != null)
             newObject.transform.parent = obstacleParent.transform;
+    }
+
+    void SpawnObject(GameObject road)
+    {
+        PathCreation.Examples.RoadMeshCreator mesh = road.GetComponentInChildren<PathCreation.Examples.RoadMeshCreator>();
+        float obstacleHeight = 1;
+
+        float location = Random.value;
+        Vector3 pos = mesh.pathCreator.path.GetPointAtTime(location);
+        Quaternion rot = mesh.pathCreator.path.GetRotation(location) * Quaternion.Euler(0f, 0f, 90f);
+
+        float sidePos = Random.Range(-mesh.roadWidth, mesh.roadWidth);
+        Vector3 sideOffset = rot * Vector3.right * sidePos;
+        Vector3 topOffset = rot * Vector3.up * obstacleHeight;
+
+        GameObject randomObstacle = null;
+
+        if (obstaclePrefabs.Count > 0)
+        {
+            randomObstacle = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Count)];
+        }
+        else
+        {
+            randomObstacle = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        }
+        Instantiate(randomObstacle, pos + sideOffset + topOffset, rot, road.transform);
     }
 
     void RemoveObjects()
@@ -215,14 +282,14 @@ public class ObstacleSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnObstacles();   
+        //SpawnObstacles();   
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.O)){
-            SpawnObstacles();
+            //SpawnObstacles();
         }
         if (Input.GetKeyDown(KeyCode.P)){
             //RemoveObjects();

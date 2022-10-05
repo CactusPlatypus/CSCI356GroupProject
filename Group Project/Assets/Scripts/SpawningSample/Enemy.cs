@@ -13,7 +13,10 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = PlayerObject.GetPlayerObject().transform;
+        if(PlayerObject.GetPlayerObject() != null)
+        {
+            player = PlayerObject.GetPlayerObject().transform;
+        }
         
     }
 

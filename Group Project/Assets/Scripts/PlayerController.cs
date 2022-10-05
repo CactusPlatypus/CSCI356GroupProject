@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
 
     private const float rotationSpeed = 140f;
-    private float movementSpeed = 50f;
+    [SerializeField]private float movementSpeed = 50f;
 
     // For detecting whether the player can jump
     private const float rayDistance = 0.5f;
