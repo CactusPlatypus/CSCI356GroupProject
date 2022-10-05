@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController controller;
 
-    public float maxSpeed = 100f;
     private const float rotationSpeed = 140f;
+
+    private const float maxSpeed = 200f;
     private float movementSpeed = 50f;
     private float speedMultiplier = 1f;
 
@@ -48,13 +49,12 @@ public class PlayerController : MonoBehaviour
             velocityY -= gravity * Time.deltaTime;
         }
 
+        // Speed up as game continues
+        // note(hallam): use deltaTime or high FPS players speed up faster
+        AddSpeed(Time.deltaTime * 0.4f);
+
         Vector3 velocity = transform.forward * movementSpeed * speedMultiplier * Time.deltaTime;
         controller.Move(velocity + Vector3.up * velocityY);
-
-        // Speed up as game continues
-        if(movementSpeed <= maxSpeed){
-            movementSpeed = movementSpeed + 0.001f;
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddSpeed(float amount)
     {
-        movementSpeed += amount;
+        movementSpeed = Math.Min(movementSpeed + amount, maxSpeed);
     }
     
     public float GetSpeed()
