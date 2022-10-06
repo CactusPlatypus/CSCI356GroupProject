@@ -534,7 +534,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273a816c088903848a6d8818ce4d0951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1677318570}
 --- !u!1 &116666145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2110,10 +2109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2785ee7d0c2251c468c20c649d185757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadUI: {fileID: 884877766}
+  music: {fileID: 54394472}
+  UI: {fileID: 1984325649}
   coinText: {fileID: 1712631192}
   scoreText: {fileID: 37910211}
-  music: {fileID: 54394472}
+  deadScoreText: {fileID: 0}
+  powerupText: {fileID: 0}
 --- !u!82 &641071691
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5100,7 +5101,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677318566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.0001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 543450653446926234}
@@ -5121,7 +5122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feet: {fileID: 41885402}
-  movementSpeed: 50
 --- !u!143 &1677318572
 CharacterController:
   m_ObjectHideFlags: 0
