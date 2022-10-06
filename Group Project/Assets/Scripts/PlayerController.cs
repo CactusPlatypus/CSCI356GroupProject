@@ -10,7 +10,10 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
 
     private const float rotationSpeed = 140f;
-    [SerializeField]private float movementSpeed = 50f;
+
+    private const float maxSpeed = 200f;
+    private float movementSpeed = 50f;
+    private float speedMultiplier = 1f;
 
     // For detecting whether the player can jump
     private const float rayDistance = 0.5f;
@@ -46,7 +49,11 @@ public class PlayerController : MonoBehaviour
             velocityY -= gravity * Time.deltaTime;
         }
 
-        Vector3 velocity = transform.forward * movementSpeed * Time.deltaTime;
+        // Speed up as game continues
+        // note(hallam): use deltaTime or high FPS players speed up faster
+        AddSpeed(Time.deltaTime * 0.4f);
+
+        Vector3 velocity = transform.forward * movementSpeed * speedMultiplier * Time.deltaTime;
         controller.Move(velocity + Vector3.up * velocityY);
     }
 
@@ -64,11 +71,22 @@ public class PlayerController : MonoBehaviour
 
     public void AddSpeed(float amount)
     {
-        movementSpeed += amount;
+        movementSpeed = Math.Min(movementSpeed + amount, maxSpeed);
     }
     
     public float GetSpeed()
     {
         return movementSpeed;
+    }
+
+    public void SetSpeedMultiplier(float multiplier, float time)
+    {
+        speedMultiplier = multiplier;
+        Invoke("ResetSpeedMultiplier", time);
+    }
+
+    private void ResetSpeedMultiplier()
+    {
+        speedMultiplier = 1f;
     }
 }

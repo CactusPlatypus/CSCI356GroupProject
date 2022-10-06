@@ -42,7 +42,7 @@ public class CannonTest : MonoBehaviour
         // Takes forward direction of cannon, and applies it to Kaleb
         Vector3 force = transform.forward * shootForce;
 
-        // This line is fucked because it is grabbing Kaleb's spine's rigidbody, not his overall one
+        // This line is long because it is grabbing Kaleb's spine's rigidbody, not his overall one
         kaleb.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).transform.GetChild(2).GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
     }
 }

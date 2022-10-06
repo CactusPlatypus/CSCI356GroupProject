@@ -1,35 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+    // To use ScoreManager.instance.MethodName() in scripts
     public static ScoreManager instance;
-    public GameObject deadUI;
+
+    public AudioSource music;
+    public Transform UI;
     public TMP_Text coinText;
     public TMP_Text scoreText;
-    public AudioSource music;
+    public TMP_Text deadScoreText;
+    public PowerupText powerupText;
 
+    private Transform gameUI;
+    private Transform deadUI;
     private PlayerController player;
     private AudioSource coinSound;
 
     private int coins = 0;
     private float score = 0f;
+    private int scoreMultiplier = 1;
     private bool dead = false;
 
+    private const float countDuration = 0.5f;
+    private const float coinWorth = 50f;
+    
     private void Start()
     {
         instance = this;
         player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         coinSound = GetComponent<AudioSource>();
+        deadUI = UI.GetChild(0);
+        gameUI = UI.GetChild(1);
     }
 
     private void Update()
     {
         if (dead) return;
-        score += (player.GetSpeed() * Time.deltaTime);
+        score += player.GetSpeed() * Time.deltaTime * scoreMultiplier;
         scoreText.text = score.ToString("0");
     }
 
@@ -39,8 +52,35 @@ public class ScoreManager : MonoBehaviour
 
         dead = true;
         Time.timeScale = 0.25f;
-        deadUI.SetActive(true);
         music.enabled = false;
+
+        deadUI.gameObject.SetActive(true);
+        gameUI.gameObject.SetActive(false);
+        
+        float totalScore = score + (coins * coinWorth);
+        if (PlayerPrefs.GetFloat("HighScore", 0) < totalScore)
+        {
+            PlayerPrefs.SetFloat("HighScore", totalScore);
+            Transform deadScoreGroup = deadUI.GetChild(3);
+            deadScoreGroup.GetChild(0).gameObject.SetActive(true);
+            deadScoreGroup.GetChild(1).gameObject.SetActive(false);
+        }
+
+        StartCoroutine(CountTo(coins));
+    }
+
+    IEnumerator CountTo(int target)
+    {
+        const int start = 0;
+        for (float timer = 0f; timer < countDuration; timer += Time.deltaTime)
+        {
+            float progress = timer / countDuration;
+            int lerped = (int)Mathf.Lerp(start, target, progress);
+            deadScoreText.text = (score + lerped * coinWorth).ToString("0");
+            yield return null;
+        }
+
+        deadScoreText.text = (score + target * coinWorth).ToString("0");
     }
 
     public void Respawn()
@@ -55,7 +95,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (dead) return false;
 
-        coins += count;
+        coins += count * scoreMultiplier;
         coinText.text = coins.ToString();
 
         player.AddSpeed(count * 0.5f);
@@ -64,5 +104,26 @@ public class ScoreManager : MonoBehaviour
         coinSound.Play();
 
         return true;
+    }
+
+    public void PowerUpPopup(string text)
+    {
+        powerupText.ShowText(text);
+    }
+
+    public void SpeedPowerUp(float multiplier, float time)
+    {
+        player.SetSpeedMultiplier(multiplier, time);
+    }
+
+    public void SetScoreMultiplier(int multi, float time)
+    {
+        scoreMultiplier = multi;
+        Invoke("ResetScoreMultiplier", time);
+    }
+
+    private void ResetScoreMultiplier()
+    {
+        scoreMultiplier = 1;
     }
 }
