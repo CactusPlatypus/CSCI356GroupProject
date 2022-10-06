@@ -7,9 +7,18 @@ public class PlayerObject : MonoBehaviour
 
     static PlayerObject instance;
 
-
+    private void OnEnable()
+    {
+        Setup();
+    }
 
     private void Awake()
+    {
+        Setup();
+    }
+
+
+    public void Setup()
     {
         if (instance != null && instance != this)
         {
@@ -21,6 +30,10 @@ public class PlayerObject : MonoBehaviour
 
     public static GameObject GetPlayerObject()
     {
+        if(instance == null)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerObject>().Setup();
+        }
         return instance.gameObject;
     }
 

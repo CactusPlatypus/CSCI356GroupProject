@@ -5,16 +5,11 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
 
-    [SerializeField] float health;
-    
-
-    
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision != null)
         {
-            if(collision.transform.GetComponent<SamplePlayerMovement>() != null)
+            if(collision.transform.CompareTag("Player"))
             {
                 OnHit();
             }
@@ -32,15 +27,5 @@ public class Obstacle : MonoBehaviour
         if (gameObject != null) Destroy(gameObject);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

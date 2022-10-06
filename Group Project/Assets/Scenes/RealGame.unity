@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc7adc0aeb89d743850b7540eac851e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleSpawner: {fileID: 762633441}
   roadPrefabs:
   - {fileID: 9065392086704802858, guid: ff0ae20dc702b7a4ebbb2d10f2dbb5b7, type: 3}
   - {fileID: 9065392086704802858, guid: d348ff4c39ebd164b9dcf707bbf6405c, type: 3}
@@ -2506,6 +2507,112 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716834273}
   m_CullTransparentMesh: 0
+--- !u!1001 &762633440
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2829844223250757500, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_Name
+      value: ObstacleManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757501, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757501, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757501, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757501, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757501, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757501, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757501, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757501, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757501, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757501, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757501, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757502, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: maxObstacleCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757502, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: minObstacleCount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757502, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: spawnDifferenceVector.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757502, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: spawnObjects.Array.data[0].spawnPercent
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829844223250757502, guid: 3f74862d0782fa64f80078b1761c65fc,
+        type: 3}
+      propertyPath: spawnObjects.Array.data[1].spawnPercent
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3f74862d0782fa64f80078b1761c65fc, type: 3}
+--- !u!114 &762633441 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2829844223250757502, guid: 3f74862d0782fa64f80078b1761c65fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 762633440}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50c8bf27e691b94c862187c88d05856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &764872767
 GameObject:
   m_ObjectHideFlags: 0
@@ -4917,6 +5024,8 @@ GameObject:
   - component: {fileID: 1677318568}
   - component: {fileID: 1677318571}
   - component: {fileID: 1677318572}
+  - component: {fileID: 1677318567}
+  - component: {fileID: 1677318573}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -4924,6 +5033,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1677318567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677318566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d74f202007f234d93addb64f5687aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &1677318568
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5000,6 +5121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feet: {fileID: 41885402}
+  movementSpeed: 50
 --- !u!143 &1677318572
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5018,6 +5140,22 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1677318573
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677318566}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1712631189
 GameObject:
   m_ObjectHideFlags: 0
