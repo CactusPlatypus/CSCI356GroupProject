@@ -9,6 +9,8 @@ public class RoadSpawner : MonoBehaviour
     // To allow scripts to globally access the road spawner
     public static RoadSpawner instance;
 
+    public ObstacleSpawner obstacleSpawner;
+
     // Store all road variations
     public GameObject[] roadPrefabs;
 
@@ -21,29 +23,7 @@ public class RoadSpawner : MonoBehaviour
 
     // Initial road the player starts on, maybe improve later
     public GameObject initialRoad;
-
-    private const int obstaclesPerRoad = 2;
-    private const float obstacleHeight = 5f;
-
-    private void SpawnObstacles(GameObject road)
-    {
-        RoadMeshCreator mesh = road.GetComponentInChildren<RoadMeshCreator>();
-
-        for (int i = 0; i < obstaclesPerRoad; i++)
-        {
-            float location = Random.value;
-            Vector3 pos = mesh.pathCreator.path.GetPointAtTime(location);
-            Quaternion rot = mesh.pathCreator.path.GetRotation(location) * Quaternion.Euler(0f, 0f, 90f);
-
-            float sidePos = Random.Range(-mesh.roadWidth, mesh.roadWidth);
-            Vector3 sideOffset = rot * Vector3.right * sidePos;
-            Vector3 topOffset = rot * Vector3.up * obstacleHeight;
-
-            GameObject randomObstacle = obstacles[Random.Range(0, obstacles.Length)];
-            Instantiate(randomObstacle, pos + sideOffset + topOffset, rot, road.transform);
-        }
-    }
-    
+  
     private GameObject SpawnRoad(Transform end)
     {
         // Make a random road prefab and add it to the queue
@@ -58,6 +38,7 @@ public class RoadSpawner : MonoBehaviour
 
         // Add obstacles to road
         //SpawnObstacles(road);
+        obstacleSpawner.SpawnObstacles(road);
 
         return road;
     }
