@@ -1,84 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PathCreation.Examples;
 
 public class ObstacleSpawner : MonoBehaviour
 {
+    [SerializeField] private Vector3 spawnDifferenceVector;
+    [SerializeField] private Vector3 spawnStart;
 
-    [SerializeField] Vector3 spawnDifferenceVector;
+    [SerializeField] private int minObstacleCount;
+    [SerializeField] private int maxObstacleCount;
+    private float totalPercent = 0;
 
-    [SerializeField]Vector3 spawnStart;
+    [SerializeField] private List<SpawnObject> spawnObjects;
 
-    [SerializeField] int maxObstacleCount;
-    [SerializeField]int minObstacleCount;
-
-
-    float totalPercent = 0;
-    int percentNumber = 1000;
-    [SerializeField]List<SpawnObject> spawnObjects;
-    [SerializeField] List<GameObject> obstaclePrefabs = new List<GameObject>();
-
-    [SerializeField] GameObject obstacleParent;//this can maybe get changed to be the parent piece which means that it will get cleared/destroyed when piece gets removed/changed
-
-
-
-
-    public void SpawnObstacles(GameObject roadPrefab)
+    public void SpawnObstacles(GameObject road)
     {
         SetupActualPercent();
         int spawnCount = Random.Range(minObstacleCount, maxObstacleCount);
-
-        GameObject newGameobjectParent = new GameObject("obstacleParent");
-        newGameobjectParent.transform.parent = roadPrefab.transform;
-
         for (int i = 0; i < spawnCount; i++)
         {
-            SpawnObject(roadPrefab);
+            SpawnObject(road);
         }
     }
 
-
-    void SetupActualPercent()
+    private void SetupActualPercent()
     {
-        if(spawnObjects.Count <= 0)
-        {
-            return;
-        }
-        //could do math to set percentNumber to make sure everything is at least 1
+        if (spawnObjects.Count <= 0) return;
+
         totalPercent = 0;
-        for (int i = 0;i < spawnObjects.Count;i++)
+        foreach (SpawnObject obj in spawnObjects)
         {
-            totalPercent += spawnObjects[i].spawnPercent * percentNumber;
-            spawnObjects[i].realSpawnPercent = totalPercent;
+            totalPercent += obj.spawnPercent;
+            obj.SetPercent(totalPercent);
         }
-
-
     }
 
-
-    GameObject PercentSpawn()
+    private GameObject PercentSpawn()
     {
-
         float randomNumber = Random.Range(0, totalPercent);
-        int pickedIndex = 0;
-        for (int i = 0; i < spawnObjects.Count; i++)
+        foreach (SpawnObject obj in spawnObjects)
         {
-            if (randomNumber < spawnObjects[i].realSpawnPercent)
+            if (randomNumber < obj.GetPercent())
             {
-                pickedIndex = i;
-                break;
+                return obj.spawnObject;
             }
         }
-
-        GameObject objectToSpawn = spawnObjects[pickedIndex].spawnObject;
-        return objectToSpawn;
-
+        return null;
     }
 
-    void SpawnObject(GameObject road)
+    private void SpawnObject(GameObject road)
     {
-        PathCreation.Examples.RoadMeshCreator mesh = road.GetComponentInChildren<PathCreation.Examples.RoadMeshCreator>();
-        float obstacleHeight = 1;
+        RoadMeshCreator mesh = road.GetComponentInChildren<RoadMeshCreator>();
+        const float obstacleHeight = 1f;
 
         float location = Random.value;
         Vector3 pos = mesh.pathCreator.path.GetPointAtTime(location);
@@ -90,7 +64,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         GameObject randomObstacle;
 
-        if (obstaclePrefabs.Count > 0)
+        if (spawnObjects.Count > 0)
         {
             randomObstacle = PercentSpawn();
         }
@@ -100,5 +74,4 @@ public class ObstacleSpawner : MonoBehaviour
         }
         Instantiate(randomObstacle, pos + sideOffset + topOffset + spawnDifferenceVector, rot, road.transform);
     }
-
 }

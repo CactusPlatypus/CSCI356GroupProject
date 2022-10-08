@@ -6,6 +6,16 @@ using UnityEngine;
 public class SpawnObject
 {
     public GameObject spawnObject;
-    public float spawnPercent;//value we put in
-    public float realSpawnPercent;//actual value?
+    public float spawnPercent; // Value we put in
+    private float realSpawnPercent; // Value needed to spawn, random must be below this
+
+    public void SetPercent(float percent)
+    {
+        realSpawnPercent = percent;
+    }
+
+    public float GetPercent()
+    {
+        return realSpawnPercent;
+    }
 }

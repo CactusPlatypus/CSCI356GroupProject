@@ -14,13 +14,14 @@ public class ScoreManager : MonoBehaviour
     public Transform UI;
     public TMP_Text coinText;
     public TMP_Text scoreText;
-    public TMP_Text deadScoreText;
     public PowerupText powerupText;
 
     private Transform gameUI;
     private Transform deadUI;
     private PlayerController player;
     private AudioSource coinSound;
+    private TMP_Text deadScoreTitle;
+    private TMP_Text deadScoreText;
 
     private int coins = 0;
     private float score = 0f;
@@ -37,6 +38,9 @@ public class ScoreManager : MonoBehaviour
         coinSound = GetComponent<AudioSource>();
         deadUI = UI.GetChild(0);
         gameUI = UI.GetChild(1);
+        Transform deadScoreGroup = deadUI.GetChild(3);
+        deadScoreTitle = deadScoreGroup.GetChild(0).GetComponent<TMP_Text>();
+        deadScoreText = deadScoreGroup.GetChild(1).GetComponent<TMP_Text>();
     }
 
     private void Update()
@@ -56,14 +60,12 @@ public class ScoreManager : MonoBehaviour
 
         deadUI.gameObject.SetActive(true);
         gameUI.gameObject.SetActive(false);
-        
+
         float totalScore = score + (coins * coinWorth);
         if (PlayerPrefs.GetFloat("HighScore", 0) < totalScore)
         {
             PlayerPrefs.SetFloat("HighScore", totalScore);
-            Transform deadScoreGroup = deadUI.GetChild(3);
-            deadScoreGroup.GetChild(0).gameObject.SetActive(true);
-            deadScoreGroup.GetChild(1).gameObject.SetActive(false);
+            deadScoreTitle.text = "New High Score";
         }
 
         StartCoroutine(CountTo(coins));

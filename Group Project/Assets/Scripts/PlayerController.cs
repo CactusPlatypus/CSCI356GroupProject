@@ -32,16 +32,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(Input.touchCount > 0){
+        if (Input.touchCount > 0){
             Touch touch = Input.GetTouch(0);
-            if(touch.position.x > 500){
+            if (touch.position.x > 500) {
                 touchControl = touchMoveAmount;  // Turn Right
-            }
-            else if(touch.position.x < 500){
+            } else if (touch.position.x < 500) {
                 touchControl = -touchMoveAmount; // Turn Left
             }
-        } 
-        else{
+        } else {
             touchControl = 0; // Go straight
         }
 

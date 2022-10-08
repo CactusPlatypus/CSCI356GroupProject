@@ -4,28 +4,11 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision != null)
+        if (other.CompareTag("Player"))
         {
-            if(collision.transform.CompareTag("Player"))
-            {
-                OnHit();
-            }
+            Destroy(gameObject);
         }
     }
-
-    void OnHit()
-    {
-        //Debug.Log("Has been hit");
-        DestroyObstacle();
-    }
-
-    void DestroyObstacle()
-    {
-        if (gameObject != null) Destroy(gameObject);
-    }
-
-
 }

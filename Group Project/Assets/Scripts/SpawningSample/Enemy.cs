@@ -4,36 +4,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private float movementSpeed = 10f;
+    private Transform target;
 
-    [SerializeField]float movementSpeed = 10;
-    bool removeAfterPass = true;
-    Transform player;
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        if(PlayerObject.GetPlayerObject() != null)
-        {
-            player = PlayerObject.GetPlayerObject().transform;
-        }
-        
+        target = GameObject.FindWithTag("Player").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(player != null)
-        {
-            Move();
-        }
+        transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * movementSpeed);
     }
-
-
-    void Move()
-    {
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * movementSpeed);
-    }
-
 }

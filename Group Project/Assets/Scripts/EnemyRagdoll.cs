@@ -17,7 +17,7 @@ public class EnemyRagdoll : MonoBehaviour
 
     void Start()
     {
-        characterAnimator = gameObject.GetComponent<Animator>();
+        characterAnimator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player").transform;
     }
 

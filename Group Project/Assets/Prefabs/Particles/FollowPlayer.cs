@@ -6,8 +6,7 @@ public class FollowPlayer : MonoBehaviour
 {
     void Start()
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        transform.parent = player.transform;
+        transform.parent = GameObject.FindWithTag("Player").transform;
         transform.localPosition = Vector3.zero;
     }
 }

@@ -21,13 +21,13 @@ public class LinkSpeedScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (agent.isOnOffMeshLink && linking == false)
+        if (agent.isOnOffMeshLink && !linking)
         {
             linking = true;
             agent.speed = agent.speed * linkSpeed;
             //agent.speed = origSpeed;
         }
-        else if (agent.isOnNavMesh && linking == true)
+        else if (agent.isOnNavMesh && linking)
         {
             linking = false;
             agent.velocity = Vector3.zero;

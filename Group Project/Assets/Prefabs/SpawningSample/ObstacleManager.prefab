@@ -43,22 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50c8bf27e691b94c862187c88d05856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnDifferenceVector: {x: 0, y: -0.5, z: 0}
   spawnStart: {x: 0, y: 0.5, z: 10}
-  roadWidth: 10
-  roadLength: 200
-  maxObstacleCount: 750
-  minObstacleCount: 1500
+  minObstacleCount: 5
+  maxObstacleCount: 15
   spawnObjects:
   - spawnObject: {fileID: 4885616038894249845, guid: bd34ed59ed4e6a145a31737a140cc701,
       type: 3}
-    spawnPercent: 50
-    realSpawnPercent: 0
+    spawnPercent: 80
   - spawnObject: {fileID: 2454680308620341478, guid: e83f2cd04f078a24c880c4bbb619ddba,
       type: 3}
-    spawnPercent: 50
-    realSpawnPercent: 0
-  obstaclePrefabs:
-  - {fileID: 4885616038894249845, guid: bd34ed59ed4e6a145a31737a140cc701, type: 3}
-  - {fileID: 2454680308620341478, guid: e83f2cd04f078a24c880c4bbb619ddba, type: 3}
-  spawnedObjects: []
-  obstacleParent: {fileID: 0}
+    spawnPercent: 20

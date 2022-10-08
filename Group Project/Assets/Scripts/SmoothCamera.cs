@@ -3,10 +3,10 @@ using System.Collections;
 
 public class SmoothCamera : MonoBehaviour
 {
-    private Transform target;
     private Vector3 offset = new Vector3(0f, 4f, 3f);
     private float positionSharpness = 5f;
     private float rotationSharpness = 8f;
+    private Transform target;
 
     private void Start()
     {
