@@ -419,6 +419,18 @@ MonoBehaviour:
   - spawnObject: {fileID: 2454680308620341478, guid: e83f2cd04f078a24c880c4bbb619ddba,
       type: 3}
     spawnPercent: 20
+  - spawnObject: {fileID: 2132935597045014978, guid: c4028560f7dd28a43a867a5a1e2551f2,
+      type: 3}
+    spawnPercent: 1
+  - spawnObject: {fileID: 3228682827747503178, guid: a1114c76ee6095e4c8a8fb542d49669e,
+      type: 3}
+    spawnPercent: 1
+  - spawnObject: {fileID: 9015299328401341820, guid: 0c4e86cbd01b0e84293eae8023b5b47f,
+      type: 3}
+    spawnPercent: 1
+  - spawnObject: {fileID: 7151895928748193529, guid: fcacbf1fff6fefc498c3b6b607b3d0d9,
+      type: 3}
+    spawnPercent: 1
 --- !u!114 &53823018
 MonoBehaviour:
   m_ObjectHideFlags: 0
