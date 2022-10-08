@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,9 +33,15 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
+            
             Touch touch = Input.GetTouch(0);
-            // Turn left or right scaled by rotationSpeed
-            touchControl = touch.position.x > Screen.width * 0.5f ? 1f : -1f;
+
+            if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+            {
+                // Turn left or right scaled by rotationSpeed
+                touchControl = touch.position.x > Screen.width * 0.5f ? 1f : -1f;
+            }
+            
         }
         else
         {
