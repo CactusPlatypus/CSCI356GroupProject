@@ -11,7 +11,6 @@ public class NavigationBaker : MonoBehaviour
     void Start()
     {
         ReBuild();
-        //BuildAll();
     }
 
     public void ReBuild()
@@ -22,18 +21,11 @@ public class NavigationBaker : MonoBehaviour
         }
     }
 
-    void BuildAll()
-    {
-        
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tilde))
         {
             ReBuild();
-            //BuildAll();
         }
     }
-
 }

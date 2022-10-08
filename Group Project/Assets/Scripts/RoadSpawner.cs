@@ -14,11 +14,8 @@ public class RoadSpawner : MonoBehaviour
     // Store all road variations
     public GameObject[] roadPrefabs;
 
-    // Store all obstacles
-    public GameObject[] obstacles;
-
-    // Store active roads in the scene, max of 32 for now
-    private const int numRoads = 32;
+    // Store active roads in the scene, max of 8 for now
+    private const int numRoads = 8;
     private Queue<GameObject> roads = new Queue<GameObject>(numRoads);
 
     // Initial road the player starts on, maybe improve later
@@ -37,16 +34,18 @@ public class RoadSpawner : MonoBehaviour
         road.transform.position = end.position - start.position;
 
         // Add obstacles to road
-        //SpawnObstacles(road);
         obstacleSpawner.SpawnObstacles(road);
 
         return road;
     }
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
+    }
 
+    private void Start()
+    {
         // Force initial road to be deleted, maybe improve this later
         roads.Enqueue(initialRoad);
 

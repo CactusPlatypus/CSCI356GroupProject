@@ -14,20 +14,8 @@ public class ObstacleSpawner : MonoBehaviour
 
     [SerializeField] private List<SpawnObject> spawnObjects;
 
-    public void SpawnObstacles(GameObject road)
+    private void Awake()
     {
-        SetupActualPercent();
-        int spawnCount = Random.Range(minObstacleCount, maxObstacleCount);
-        for (int i = 0; i < spawnCount; i++)
-        {
-            SpawnObject(road);
-        }
-    }
-
-    private void SetupActualPercent()
-    {
-        if (spawnObjects.Count <= 0) return;
-
         totalPercent = 0;
         foreach (SpawnObject obj in spawnObjects)
         {
@@ -36,7 +24,16 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
-    private GameObject PercentSpawn()
+    public void SpawnObstacles(GameObject road)
+    {
+        int spawnCount = Random.Range(minObstacleCount, maxObstacleCount);
+        for (int i = 0; i < spawnCount; i++)
+        {
+            SpawnObject(road);
+        }
+    }
+
+    private GameObject ChooseRandom()
     {
         float randomNumber = Random.Range(0, totalPercent);
         foreach (SpawnObject obj in spawnObjects)
@@ -66,7 +63,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         if (spawnObjects.Count > 0)
         {
-            randomObstacle = PercentSpawn();
+            randomObstacle = ChooseRandom();
         }
         else
         {
