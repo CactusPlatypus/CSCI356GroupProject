@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            timeSinceGrounded += Time.deltaTime;
+            timeSinceGrounded += Time.fixedDeltaTime;
             // Kill player after 1 second off road
             if (timeSinceGrounded > 1f)
             {
