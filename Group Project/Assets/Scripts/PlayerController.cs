@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     private bool grounded = false;
     private float timeSinceGrounded = 0f;
 
-    private const float jumpForce = 0.07f;
-    private const float gravity = 0.2f;
+    private const float jumpForce = 40f;
+    private const float gravity = 120f;
     private float velocityY = 0f;
 
     private void Start()
@@ -69,10 +69,10 @@ public class PlayerController : MonoBehaviour
 
         // Speed up as game continues
         // note(hallam): use deltaTime or high FPS players speed up faster
-        AddSpeed(Time.deltaTime * 0.4f);
+        AddSpeed(0.4f * Time.deltaTime);
 
-        Vector3 velocity = transform.forward * movementSpeed * speedMultiplier * Time.deltaTime;
-        controller.Move(velocity + Vector3.up * velocityY);
+        Vector3 velocity = transform.forward * movementSpeed * speedMultiplier + Vector3.up * velocityY;
+        controller.Move(velocity * Time.deltaTime);
     }
 
     private void FixedUpdate()

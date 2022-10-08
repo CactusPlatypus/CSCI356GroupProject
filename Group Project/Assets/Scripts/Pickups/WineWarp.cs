@@ -4,28 +4,27 @@ using UnityEngine;
 
 public class WineWarp : MonoBehaviour
 {
-    private const float length = 3f;
-    private const float minSpeed = 0.01f;
+    private const float duration = 3f;
+    private const float minSpeed = 0.25f;
     private const float maxSpeed = 1f;
     private float elapsedTime = 0f;
 
-    public void Start()
+    private void Update()
     {
-        Destroy(gameObject, length + 3f);
-    }
-    void Update()
-    {
-        if (elapsedTime < length / 2f)
+        // Don't update when the menu is open
+        if (Time.timeScale <= 0f) return;
+
+        // Sine wave shaped time curve
+        float curve = 0.5f + Mathf.Cos(2 * Mathf.PI * elapsedTime / duration) * 0.5f;
+        float speed = Mathf.Lerp(minSpeed, maxSpeed, curve);
+        Time.timeScale = speed;
+
+        // Use unscaledDeltaTime since deltaTime is affected by timeScale
+        elapsedTime += Time.unscaledDeltaTime;
+        if (elapsedTime >= duration)
         {
-            float speed = Mathf.Lerp(maxSpeed, minSpeed, elapsedTime / (length / 2f));
-            Time.timeScale = speed;
-            elapsedTime += Time.deltaTime;
-        }
-        else
-        {
-            float speed = Mathf.Lerp(minSpeed, maxSpeed, elapsedTime / length);
-            Time.timeScale = speed;
-            elapsedTime += Time.deltaTime;
+            Time.timeScale = 1f;
+            Destroy(gameObject);
         }
     }
 }

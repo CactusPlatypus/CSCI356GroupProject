@@ -53,7 +53,6 @@ public class ScoreManager : MonoBehaviour
     public void Die()
     {
         if (dead) return;
-
         dead = true;
         Time.timeScale = 0.25f;
         music.enabled = false;
@@ -62,27 +61,24 @@ public class ScoreManager : MonoBehaviour
         gameUI.gameObject.SetActive(false);
 
         float totalScore = score + (coins * coinWorth);
-        if (PlayerPrefs.GetFloat("HighScore", 0) < totalScore)
+        if (PlayerPrefs.GetFloat("HighScore", 0f) < totalScore)
         {
             PlayerPrefs.SetFloat("HighScore", totalScore);
             deadScoreTitle.text = "New High Score";
         }
 
-        StartCoroutine(CountTo(coins));
+        StartCoroutine(CountTo(totalScore));
     }
 
-    IEnumerator CountTo(int target)
+    IEnumerator CountTo(float target)
     {
-        const int start = 0;
-        for (float timer = 0f; timer < countDuration; timer += Time.deltaTime)
+        for (float timer = 0f; timer < countDuration; timer += Time.unscaledDeltaTime)
         {
             float progress = timer / countDuration;
-            int lerped = (int)Mathf.Lerp(start, target, progress);
-            deadScoreText.text = (score + lerped * coinWorth).ToString("0");
+            deadScoreText.text = (target * progress).ToString("0");
             yield return null;
         }
-
-        deadScoreText.text = (score + target * coinWorth).ToString("0");
+        deadScoreText.text = target.ToString("0");
     }
 
     public void Respawn()
@@ -102,7 +98,7 @@ public class ScoreManager : MonoBehaviour
 
         player.AddSpeed(count * 0.5f);
 
-        // Audio is played from here, since the coin deletes itself and any audio sources attached
+        // Audio is played from here since the coin deletes itself and attached audio sources
         coinSound.Play();
 
         return true;
