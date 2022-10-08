@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     // For detecting whether the player can jump
     private const float rayDistance = 0.5f;
 
+    private bool grounded = false;
+    private float timeSinceGrounded = 0f;
+
     private const float jumpForce = 0.07f;
     private const float gravity = 0.2f;
     private float velocityY = 0f;
@@ -33,15 +36,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
-            
             Touch touch = Input.GetTouch(0);
-
             if (!EventSystem.current.IsPointerOverGameObject(touch.fingerId))
             {
                 // Turn left or right scaled by rotationSpeed
                 touchControl = touch.position.x > Screen.width * 0.5f ? 1f : -1f;
             }
-            
         }
         else
         {
@@ -54,9 +54,7 @@ public class PlayerController : MonoBehaviour
         // Rotate player based on keyboard input first
         transform.Rotate(Vector3.up, rotation * Time.deltaTime);
 
-        // Find the floor to know whether the player can jump
-        RaycastHit hit;
-        if (Physics.Raycast(feet.position + Vector3.up * rayDistance, Vector3.down, out hit, rayDistance * 2f))
+        if (grounded)
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -77,15 +75,32 @@ public class PlayerController : MonoBehaviour
         controller.Move(velocity + Vector3.up * velocityY);
     }
 
+    private void FixedUpdate()
+    {
+        // Find the floor to know whether the player can jump
+        grounded = Physics.Raycast(feet.position + Vector3.up * rayDistance, Vector3.down, rayDistance * 2f);
+
+        // Check if player is off the road for more than a second
+        if (Physics.Raycast(feet.position + Vector3.up * rayDistance, Vector3.down))
+        {
+            timeSinceGrounded = 0f;
+        }
+        else
+        {
+            timeSinceGrounded += Time.deltaTime;
+            // Kill player after 1 second off road
+            if (timeSinceGrounded > 1f)
+            {
+                ScoreManager.instance.Die();
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("SpawnTrigger"))
         {
             RoadSpawner.instance.TriggerEntered();
-        }
-        else if (other.CompareTag("DeathTrigger"))
-        {
-            ScoreManager.instance.Die();
         }
     }
 

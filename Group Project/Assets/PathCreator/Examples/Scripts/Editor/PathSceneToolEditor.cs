@@ -64,17 +64,19 @@ namespace PathCreation.Examples
                     string name = pathTool.gameObject.name;
                     AssetDatabase.CreateAsset(mesh, Path.Combine(bakeDir, name + ".asset"));
                     AssetDatabase.SaveAssets();
-                    
+
                     // Copy mesh rendering stuff to a new game object
-                    GameObject copy = Instantiate(pathTool.GetMeshHolder(), pathTool.gameObject.transform.parent);
+                    GameObject meshHolder = pathTool.GetMeshHolder();
+                    GameObject copy = Instantiate(meshHolder, pathTool.gameObject.transform);
                     copy.name = "Baked " + name;
                     if (!copy.GetComponent<MeshCollider>())
                     {
                         copy.AddComponent<MeshCollider>();
                     }
 
-                    // Hide original mesh in case we want to edit it later
-                    pathTool.gameObject.SetActive(false);
+                    // Hide original stuff in case we want to edit it later
+                    pathTool.enabled = false;
+                    meshHolder.SetActive(false);
 
                     // Force prefab to autosave
                     EditorSceneManager.MarkSceneDirty(pathTool.gameObject.scene);
@@ -95,11 +97,12 @@ namespace PathCreation.Examples
                     }
 
                     // Delete baked spline
-                    Transform baked = pathTool.gameObject.transform.parent.Find("Baked " + name);
+                    Transform baked = pathTool.gameObject.transform.Find("Baked " + name);
                     DestroyImmediate(baked.gameObject);
 
                     // Show original mesh
-                    pathTool.gameObject.SetActive(true);
+                    pathTool.enabled = true;
+                    pathTool.GetMeshHolder().SetActive(true);
 
                     // Force prefab to autosave
                     EditorSceneManager.MarkSceneDirty(pathTool.gameObject.scene);

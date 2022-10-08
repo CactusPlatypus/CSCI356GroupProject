@@ -6,7 +6,6 @@ TagManager:
   tags:
   - SpawnTrigger
   - Fire
-  - DeathTrigger
   layers:
   - Default
   - TransparentFX
