@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     private const float rotationSpeed = 140f;
 
     private const float maxSpeed = 200f;
+    
+    private float touchMoveAmount = 75f;
+    private float touchControl = 0f;
     private float movementSpeed = 50f;
     private float speedMultiplier = 1f;
 
@@ -29,7 +32,20 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
+        if(Input.touchCount > 0){
+            Touch touch = Input.GetTouch(0);
+            if(touch.position.x > 500){
+                touchControl = touchMoveAmount;  // Turn Right
+            }
+            else if(touch.position.x < 500){
+                touchControl = -touchMoveAmount; // Turn Left
+            }
+        } 
+        else{
+            touchControl = 0; // Go straight
+        }
+
+        float rotation = (Input.GetAxis("Horizontal") * rotationSpeed) + touchControl; // Touch control is 0 when played on a PC
 
         // Rotate player based on keyboard input first
         transform.Rotate(Vector3.up, rotation * Time.deltaTime);
