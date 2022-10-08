@@ -9,15 +9,26 @@ public class PowerupText : MonoBehaviour
     [SerializeField] private TMP_Text powerupText;
 
     private const float minTextSize = 0f;
-    private const float maxTextSize = 28.3f;
-    private const float powerupTime = 2f;
+    private const float maxTextSize = 100f;
+
+    private const float scaleTime = 0.25f;
+    private const float hideTime = 3f;
+
     private float timeElapsed = 0f;
 
     private void Update()
     {
-        // Lerp the font size
-        float fontSize = Mathf.Lerp(minTextSize, maxTextSize, timeElapsed / powerupTime);
-        powerupText.fontSize = fontSize;
+        if (timeElapsed < scaleTime)
+        {
+            float grow = timeElapsed / scaleTime;
+            powerupText.fontSize = Mathf.Lerp(minTextSize, maxTextSize, grow);
+        }
+        else if (timeElapsed > hideTime - scaleTime)
+        {
+            float shrink = (timeElapsed - hideTime + scaleTime) / scaleTime;
+            powerupText.fontSize = Mathf.Lerp(maxTextSize, minTextSize, shrink);
+        }
+        
         timeElapsed += Time.deltaTime;
     }
 
@@ -27,7 +38,7 @@ public class PowerupText : MonoBehaviour
         powerupText.fontSize = 0f;
         timeElapsed = 0f;
         powerupCanvas.SetActive(true);
-        Invoke("HideText", 4f);
+        Invoke("HideText", hideTime);
     }
 
     public void HideText()

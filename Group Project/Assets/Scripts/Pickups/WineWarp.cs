@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WineWarp : MonoBehaviour
 {
-    private const float duration = 3f;
+    private const float duration = 5f;
     private const float minSpeed = 0.25f;
     private const float maxSpeed = 1f;
     private float elapsedTime = 0f;
