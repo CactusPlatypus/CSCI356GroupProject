@@ -14,7 +14,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     [SerializeField] private List<SpawnObject> spawnObjects;
 
-    private void Awake()
+    private void OnEnable()
     {
         totalPercent = 0;
         foreach (SpawnObject obj in spawnObjects)

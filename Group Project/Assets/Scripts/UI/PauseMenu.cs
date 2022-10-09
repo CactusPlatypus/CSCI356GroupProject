@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public float duration;
+    [SerializeField] private float duration = 0.15f;
     
     public void pauseGame()
     {
@@ -18,7 +18,6 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
 
         Transform child = gameObject.transform.GetChild(0);
-
         foreach (Transform t in child)
         {
             t.gameObject.GetComponent<UITweener>().OnClose();
