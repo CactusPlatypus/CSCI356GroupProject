@@ -16,7 +16,7 @@ public class PowerupText : MonoBehaviour
 
     private float timeElapsed = 0f;
 
-    private void Update()
+    /*private void Update()
     {
         if (timeElapsed < scaleTime)
         {
@@ -30,17 +30,23 @@ public class PowerupText : MonoBehaviour
         }
         
         timeElapsed += Time.deltaTime;
-    }
+    }*/
 
     public void ShowText(string text)
     {
         powerupText.text = text;
-        powerupText.fontSize = 0f;
-        timeElapsed = 0f;
+        // powerupText.fontSize = 0f;
+        // timeElapsed = 0f;
         powerupCanvas.SetActive(true);
+        Invoke("CloseText", hideTime/2);
         Invoke("HideText", hideTime);
     }
 
+    public void CloseText()
+    {
+        powerupText.GetComponent<UITweener>().OnClose();
+    }
+    
     public void HideText()
     {
         powerupCanvas.SetActive(false);

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public float duration;
+    
     public void pauseGame()
     {
         Time.timeScale = 0f;
@@ -14,6 +16,19 @@ public class PauseMenu : MonoBehaviour
     public void resumeGame()
     {
         Time.timeScale = 1f;
+
+        Transform child = gameObject.transform.GetChild(0);
+
+        foreach (Transform t in child)
+        {
+            t.gameObject.GetComponent<UITweener>().OnClose();
+        }
+        
+        Invoke("HideUI", duration);
+    }
+
+    public void HideUI()
+    {
         gameObject.SetActive(false);
     }
 
