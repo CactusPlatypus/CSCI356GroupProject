@@ -39,7 +39,7 @@ public class RoadSpawner : MonoBehaviour
         return road;
     }
 
-    private void Awake()
+    private void OnEnable()
     {
         instance = this;
     }
