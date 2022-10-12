@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class CannonTest : MonoBehaviour
 {
-    private Transform player;
+    private CharacterController player;
     private Transform shotPoint;
     private AudioSource sound;
+    private const float shootForce = 100f;
 
     public GameObject KalebRagdoll;
     public GameObject explosion;
     
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        player = GameObject.FindWithTag("Player").GetComponent<CharacterController>();
         sound = GetComponent<AudioSource>();
         shotPoint = transform.GetChild(0);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform == player)
+        if (other.CompareTag("Player"))
         {
-            float shootForce = Vector3.Distance(player.position, transform.position) * 100f;
-            Shoot(shootForce);
+            Shoot();
         }
     }
 
-    void Shoot(float shootForce)
+    void Shoot()
     {
         sound.Play();
 
@@ -39,8 +39,10 @@ public class CannonTest : MonoBehaviour
         Destroy(kaleb, 10f);
         Destroy(explosionI, 10f);
 
-        // Takes forward direction of cannon, and applies it to Kaleb
-        Vector3 force = transform.forward * shootForce;
+        // Try to aim for the player based on their velocity
+        Vector3 offset = player.transform.position + player.velocity * 0.5f;
+        Vector3 direction = offset - shotPoint.position;
+        Vector3 force = direction * shootForce;
 
         // This line is long because it is grabbing Kaleb's spine's rigidbody, not his overall one
         kaleb.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).transform.GetChild(2).GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);

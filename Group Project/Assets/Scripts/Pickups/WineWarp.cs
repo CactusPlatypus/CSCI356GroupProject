@@ -14,8 +14,12 @@ public class WineWarp : MonoBehaviour
         // Don't update when the menu is open
         if (Time.timeScale <= 0f) return;
 
-        // Sine wave shaped time curve
-        float curve = 0.5f + Mathf.Cos(2 * Mathf.PI * elapsedTime / duration) * 0.5f;
+        // Sine shaped time curve
+        //float curve = 0.5f + Mathf.Cos(2 * Mathf.PI * elapsedTime / duration) * 0.5f;
+
+        // Line shaped time curve (equivalent to 2 lerps)
+        const float halfDuration = duration * 0.5f;
+        float curve = Mathf.Abs(elapsedTime - halfDuration) / halfDuration;
         float speed = Mathf.Lerp(minSpeed, maxSpeed, curve);
         Time.timeScale = speed;
 

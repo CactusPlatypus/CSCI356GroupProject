@@ -17,10 +17,16 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        Transform child = gameObject.transform.GetChild(0);
-        foreach (Transform t in child)
+        // Hacky, loop through 2 layers of children
+        foreach (Transform t1 in transform)
         {
-            t.gameObject.GetComponent<UITweener>().OnClose();
+            UITweener tweener = t1.gameObject.GetComponent<UITweener>();
+            if (tweener) tweener.OnClose();
+            foreach (Transform t2 in t1)
+            {
+                tweener = t2.gameObject.GetComponent<UITweener>();
+                if (tweener) tweener.OnClose();
+            }
         }
         
         Invoke("HideUI", duration);

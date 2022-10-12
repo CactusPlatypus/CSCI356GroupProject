@@ -206,8 +206,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
-  m_Center: {x: 0, y: 0, z: 16}
+  m_Radius: 20
+  m_Center: {x: 0, y: 7, z: 20}
 --- !u!1 &6891113986113568385
 GameObject:
   m_ObjectHideFlags: 0

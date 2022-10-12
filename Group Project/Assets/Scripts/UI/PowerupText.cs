@@ -5,26 +5,43 @@ using UnityEngine;
 
 public class PowerupText : MonoBehaviour
 {
-    [SerializeField] private GameObject powerupCanvas;
-    [SerializeField] private TMP_Text powerupText;
+    public LeanTweenType easeIn;
+    public LeanTweenType easeOut;
 
-    private const float hideTime = 3f;
+    private GameObject powerupText;
+    private AudioSource sound;
+    private Coroutine timer;
+    private const float hideTime = 2f;
+
+    private void Start()
+    {
+        powerupText = transform.GetChild(0).gameObject;
+        sound = GetComponent<AudioSource>();
+    }
 
     public void ShowText(string text)
     {
-        powerupText.text = text;
-        powerupCanvas.SetActive(true);
-        Invoke("CloseText", hideTime * 0.5f);
-        Invoke("HideText", hideTime);
+        // Don't hide text, just show it
+        if (timer != null) StopCoroutine(timer);
+
+        // Animate manually
+        powerupText.transform.localScale = new Vector3(0f, 0f, 0f);
+        LeanTween.scale(powerupText, new Vector3(1f, 1f, 1f), 0.5f)
+            .setEase(easeIn)
+            .setIgnoreTimeScale(true);
+
+        powerupText.GetComponent<TMP_Text>().text = text;
+        sound.Play();
+        
+        // Hide text after time
+        timer = StartCoroutine(CloseText());
     }
 
-    public void CloseText()
+    public IEnumerator CloseText()
     {
-        powerupText.GetComponent<UITweener>().OnClose();
-    }
-    
-    public void HideText()
-    {
-        powerupCanvas.SetActive(false);
+        yield return new WaitForSeconds(hideTime);
+        LeanTween.scale(powerupText, new Vector3(0f, 0f, 0f), 0.5f)
+            .setEase(easeOut)
+            .setIgnoreTimeScale(true);
     }
 }
