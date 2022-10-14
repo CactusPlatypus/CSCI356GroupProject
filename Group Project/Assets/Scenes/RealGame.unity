@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37578237, g: 0.61411345, b: 0.8668405, a: 1}
+  m_IndirectSpecularColor: {r: 0.37574077, g: 0.6143975, b: 0.86685455, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -432,7 +432,7 @@ MonoBehaviour:
   spawnObjects:
   - spawnObject: {fileID: 4885616038894249845, guid: bd34ed59ed4e6a145a31737a140cc701,
       type: 3}
-    spawnPercent: 80
+    spawnPercent: 50
   - spawnObject: {fileID: 2454680308620341478, guid: e83f2cd04f078a24c880c4bbb619ddba,
       type: 3}
     spawnPercent: 20

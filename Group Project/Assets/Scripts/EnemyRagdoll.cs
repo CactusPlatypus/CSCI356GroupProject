@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyRagdoll : MonoBehaviour
 {
@@ -8,57 +9,58 @@ public class EnemyRagdoll : MonoBehaviour
     private Transform player;
 
     [SerializeField] private Rigidbody characterRB;
-    [SerializeField] private float upForce = 1000f;
-    [SerializeField] private float forwardForce = 500f;
-    [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float leapRange = 7f;
+    [SerializeField] private Transform characterTransform;
+    [SerializeField] private float upForce = 100000f;
+    [SerializeField] private float forwardForce = 5000f;
+
 
     private bool usedLeap = false;
 
     void Start()
     {
-        characterAnimator = GetComponent<Animator>();
+        characterAnimator = GetComponentsInChildren<Animator>()[0];
         player = GameObject.FindWithTag("Player").transform;
+        characterRB = transform.Find("Kaleb").GetComponent<Rigidbody>();
+        characterTransform = transform.Find("Kaleb").transform;
     }
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.position) <= leapRange && !usedLeap)
-        {
-            RaycastHit hit;
-            Vector3 rayDirection = player.position - transform.position;
-            if (Physics.Raycast(transform.position, rayDirection, out hit) && hit.transform == player)
-            {
-                transform.LookAt(player.transform);
-                Leap();
-            }
-        }
-
-        if (!usedLeap)
-        {
-            Run();
-        }
+       
+       if (Vector3.Distance(transform.position , player.position) < 40.0f && !usedLeap)
+       {
+            Debug.Log("leap plz");
+                //transform.LookAt(player.transform);
+            Leap();
+       }else  if (!usedLeap)
+       {
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z -0.791f);
+            characterTransform.position = transform.position;
+       }
+           
+        
     }
 
     private void Leap()
     {
-        usedLeap = true;
 
-        //change animation to jump
-        //characterAnimator.SetTrigger("Jump");
+        usedLeap = true;
+        //disable animator
+        gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        gameObject.GetComponent<NavAgentScript>().enabled = false;
+        characterAnimator.enabled = false;
+      
+       
+
 
         // Apply force
-        characterRB.AddForce(transform.up * upForce, ForceMode.Impulse);
-        characterRB.AddForce(transform.forward * forwardForce, ForceMode.Impulse);
+        characterRB.AddForce(characterTransform.up * upForce, ForceMode.Impulse);
+        characterRB.AddForce(characterTransform.forward * forwardForce, ForceMode.Impulse);
 
-        //disable animator
-        characterAnimator.enabled = false;
+
+
+       
     }
 
-    private void Run()
-    {
-        //characterRB.velocity = transform.forward * moveSpeed;
-        transform.parent.Translate(transform.forward * moveSpeed * Time.deltaTime);
-        //characterRB.MovePosition(transform.position + (transform.forward * moveSpeed * Time.deltaTime));
-    }
+ 
 }
