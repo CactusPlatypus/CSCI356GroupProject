@@ -92,15 +92,23 @@ public class ScoreManager : MonoBehaviour
     public bool AddCoins(int count)
     {
         if (dead) return false;
+        if (coins + count *scoreMultiplier <= 0)
+        {
+            coins = 0;
+          
+        }
+        else
+        {
+            coins += count * scoreMultiplier;
+           
+        }
 
-        coins += count * scoreMultiplier;
         coinText.text = coins.ToString();
 
         player.AddSpeed(count * 0.5f);
 
         // Audio is played from here since the coin deletes itself and attached audio sources
         coinSound.Play();
-
         return true;
     }
 
