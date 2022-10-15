@@ -12,10 +12,12 @@ public class PlayerController : MonoBehaviour
 
     private const float rotationSpeed = 140f;
     private float touchControl = 0f;
+    private bool invincible = false;
 
     private float movementSpeed = 50f;
     private float speedMultiplier = 1f;
     private const float maxSpeed = 200f;
+    private int lives = 5;
 
     // For detecting whether the player can jump
     private const float rayDistance = 0.5f;
@@ -34,6 +36,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (lives <= 0)
+        {
+            ScoreManager.instance.Die();
+        }
+
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -91,7 +99,7 @@ public class PlayerController : MonoBehaviour
             // Kill player after 1 second off road
             if (timeSinceGrounded > 1f)
             {
-                ScoreManager.instance.Die();
+                lives = 0;
             }
         }
     }
@@ -124,4 +132,19 @@ public class PlayerController : MonoBehaviour
     {
         speedMultiplier = 1f;
     }
+
+    public void addLives(int num)
+    {
+        if (invincible && num < 0)
+        {
+            return;
+        }
+        lives += num;
+    }
+
+    public int getLives()
+    {
+        return lives;
+    }
+
 }

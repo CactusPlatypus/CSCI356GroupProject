@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
     public Transform UI;
     public TMP_Text coinText;
     public TMP_Text scoreText;
+    public TMP_Text livesText;
     public PowerupText powerupText;
 
     private Transform gameUI;
@@ -22,6 +23,9 @@ public class ScoreManager : MonoBehaviour
     private AudioSource coinSound;
     private TMP_Text deadScoreTitle;
     private TMP_Text deadScoreText;
+    
+
+    public float scoreToNextLife = 5000;
 
     private int coins = 0;
     private float score = 0f;
@@ -46,8 +50,16 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         if (dead) return;
+
+        if (score >= scoreToNextLife)
+        {
+            scoreToNextLife += scoreToNextLife;
+            grantLife(1);
+        }
+
         score += player.GetSpeed() * Time.deltaTime * scoreMultiplier;
         scoreText.text = score.ToString("0");
+        livesText.text = player.getLives().ToString();
     }
 
     public void Die()
@@ -128,6 +140,10 @@ public class ScoreManager : MonoBehaviour
         Invoke("ResetScoreMultiplier", time);
     }
 
+    public void grantLife(int amount)
+    {
+        player.addLives(amount);
+    }
     private void ResetScoreMultiplier()
     {
         scoreMultiplier = 1;

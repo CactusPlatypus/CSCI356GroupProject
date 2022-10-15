@@ -10,8 +10,8 @@ public class EnemyRagdoll : MonoBehaviour
 
     [SerializeField] private Rigidbody characterRB;
     [SerializeField] private Transform characterTransform;
-    [SerializeField] private float upForce = 100000f;
-    [SerializeField] private float forwardForce = 5000f;
+    [SerializeField] private float upForce = 0f;
+    [SerializeField] private float forwardForce = 0f;
 
 
     private bool usedLeap = false;
@@ -34,7 +34,7 @@ public class EnemyRagdoll : MonoBehaviour
             Leap();
        }else  if (!usedLeap)
        {
-            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z -0.791f);
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z -0.791f);
             characterTransform.position = transform.position;
        }
            
@@ -46,10 +46,10 @@ public class EnemyRagdoll : MonoBehaviour
 
         usedLeap = true;
         //disable animator
+        characterAnimator.enabled = false;
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
         gameObject.GetComponent<NavAgentScript>().enabled = false;
-        characterAnimator.enabled = false;
-      
+  
        
 
 
@@ -62,5 +62,5 @@ public class EnemyRagdoll : MonoBehaviour
        
     }
 
- 
+   
 }
