@@ -14,7 +14,6 @@ public class ScoreManager : MonoBehaviour
     public Transform UI;
     public TMP_Text coinText;
     public TMP_Text scoreText;
-    public TMP_Text livesText;
     public PowerupText powerupText;
 
     private Transform gameUI;
@@ -23,9 +22,6 @@ public class ScoreManager : MonoBehaviour
     private AudioSource coinSound;
     private TMP_Text deadScoreTitle;
     private TMP_Text deadScoreText;
-    
-
-    public float scoreToNextLife = 5000;
 
     private int coins = 0;
     private float score = 0f;
@@ -50,16 +46,8 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         if (dead) return;
-
-        if (score >= scoreToNextLife)
-        {
-            scoreToNextLife += scoreToNextLife;
-            grantLife(1);
-        }
-
         score += player.GetSpeed() * Time.deltaTime * scoreMultiplier;
         scoreText.text = score.ToString("0");
-        livesText.text = player.getLives().ToString();
     }
 
     public void Die()
@@ -104,23 +92,15 @@ public class ScoreManager : MonoBehaviour
     public bool AddCoins(int count)
     {
         if (dead) return false;
-        if (coins + count *scoreMultiplier <= 0)
-        {
-            coins = 0;
-          
-        }
-        else
-        {
-            coins += count * scoreMultiplier;
-           
-        }
 
+        coins += count * scoreMultiplier;
         coinText.text = coins.ToString();
 
         player.AddSpeed(count * 0.5f);
 
         // Audio is played from here since the coin deletes itself and attached audio sources
         coinSound.Play();
+
         return true;
     }
 
@@ -134,25 +114,14 @@ public class ScoreManager : MonoBehaviour
         player.SetSpeedMultiplier(multiplier, time);
     }
 
-    public void invinciblePowerUp(float time)
-    {
-        player.makeInvincible(time);
-    }
-
     public void SetScoreMultiplier(int multi, float time)
     {
         scoreMultiplier = multi;
         Invoke("ResetScoreMultiplier", time);
     }
 
-    public void grantLife(int amount)
-    {
-        player.addLives(amount);
-    }
     private void ResetScoreMultiplier()
     {
         scoreMultiplier = 1;
     }
-
-
 }
