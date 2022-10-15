@@ -147,4 +147,14 @@ public class PlayerController : MonoBehaviour
         return lives;
     }
 
+    public void makeInvincible(float time)
+    {
+        invincible = true;
+        Invoke("unmakeInvicible", time);
+    }
+    private void unmakeInvicible()
+    {
+        invincible = false;
+    }
+
 }

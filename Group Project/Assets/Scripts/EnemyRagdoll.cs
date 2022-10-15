@@ -49,8 +49,8 @@ public class EnemyRagdoll : MonoBehaviour
         characterAnimator.enabled = false;
         gameObject.GetComponent<NavMeshAgent>().enabled = false;
         gameObject.GetComponent<NavAgentScript>().enabled = false;
-  
-       
+
+        characterTransform.position = new Vector3(characterTransform.position.x, transform.position.y + 3.0f, characterTransform.position.z);
 
 
         // Apply force

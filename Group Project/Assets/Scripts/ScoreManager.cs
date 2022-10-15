@@ -134,6 +134,11 @@ public class ScoreManager : MonoBehaviour
         player.SetSpeedMultiplier(multiplier, time);
     }
 
+    public void invinciblePowerUp(float time)
+    {
+        player.makeInvincible(time);
+    }
+
     public void SetScoreMultiplier(int multi, float time)
     {
         scoreMultiplier = multi;
@@ -148,4 +153,6 @@ public class ScoreManager : MonoBehaviour
     {
         scoreMultiplier = 1;
     }
+
+
 }
