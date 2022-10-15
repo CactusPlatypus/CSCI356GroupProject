@@ -191,10 +191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bef150b3379d76144bd13565f2f8bb06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRB: {fileID: -8237926692009960770}
   characterTransform: {fileID: 0}
   upForce: 1000
   forwardForce: 500
+  ragdoll: {fileID: 2587465754222100291, guid: d1a86bea29a008c478d84e42462676cf, type: 3}
 --- !u!1001 &1576691916
 PrefabInstance:
   m_ObjectHideFlags: 0
