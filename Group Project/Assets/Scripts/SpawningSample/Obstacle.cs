@@ -8,9 +8,6 @@ public class Obstacle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-
-            GameObject.Find("ScoreManager").GetComponent<ScoreManager>().AddCoins(-1);
-
             Destroy(gameObject);
         }
     }
