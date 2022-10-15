@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyCollision : MonoBehaviour
 {
-    private float timeSinceLastCollision = 3.0f;
+    float timeSinceLastCollision = 3.0f;
 
     public void Update()
     {
