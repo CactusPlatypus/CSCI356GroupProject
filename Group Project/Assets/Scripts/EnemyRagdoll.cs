@@ -27,7 +27,7 @@ public class EnemyRagdoll : MonoBehaviour
     void Update()
     {
        
-       if (Vector3.Distance(transform.position , player.position) < 40.0f && !usedLeap)
+       if (Vector3.Distance(transform.position , player.position) < 20.0f && !usedLeap)
        {
             Debug.Log("leap plz");
                 //transform.LookAt(player.transform);
