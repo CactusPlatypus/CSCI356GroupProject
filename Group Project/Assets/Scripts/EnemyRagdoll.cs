@@ -8,8 +8,6 @@ public class EnemyRagdoll : MonoBehaviour
     private Animator characterAnimator;
     private Transform player;
     [SerializeField] private Transform characterTransform;
-    [SerializeField] private float upForce = 100000f;
-    [SerializeField] private float forwardForce = 120f;
     [SerializeField] private GameObject ragdoll;
 
 
@@ -41,25 +39,14 @@ public class EnemyRagdoll : MonoBehaviour
 
     private void Leap()
     {
-
         usedLeap = true;
         //disable animator
   
         GameObject spawnedRagdoll = Instantiate(ragdoll);
         spawnedRagdoll.transform.position = transform.position;
         spawnedRagdoll.transform.LookAt(player);
-        // Apply force
-        spawnedRagdoll.GetComponent<Rigidbody>().AddForce(characterTransform.up * upForce, ForceMode.Impulse);
-        spawnedRagdoll.GetComponent<Rigidbody>().AddForce(characterTransform.forward * forwardForce, ForceMode.Impulse);
+
         Destroy(gameObject);
-    
-
-
-        
-
-
-
-       
     }
 
    
