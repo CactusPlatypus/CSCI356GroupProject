@@ -24,9 +24,6 @@ public class ScoreManager : MonoBehaviour
     private TMP_Text deadScoreTitle;
     private TMP_Text deadScoreText;
     
-
-    public float scoreToNextLife = 5000;
-
     private int coins = 0;
     private float score = 0f;
     private int scoreMultiplier = 1;
@@ -34,6 +31,7 @@ public class ScoreManager : MonoBehaviour
     private bool invincible = false;
     private bool dead = false; // Prevent PlayerController calling method too many times
 
+    private float scoreToNextLife = 5000f;
     private const float countDuration = 0.5f;
     private const float coinWorth = 50f;
     
@@ -57,7 +55,6 @@ public class ScoreManager : MonoBehaviour
             scoreToNextLife += scoreToNextLife;
             AddLives(1);
         }
-
         score += player.GetSpeed() * Time.deltaTime * scoreMultiplier;
         scoreText.text = score.ToString("0");
     }
@@ -128,7 +125,10 @@ public class ScoreManager : MonoBehaviour
         player.AddSpeed(count * 0.5f);
 
         // Audio is played from here since the coin deletes itself and attached audio sources
-        coinSound.Play();
+        if (count > 0)
+        {
+            coinSound.Play();
+        }
         return true;
     }
 

@@ -31,13 +31,9 @@ public class CannonTest : MonoBehaviour
     {
         sound.Play();
 
-        // edit(hallam): Keep Kaleb unparented so the cannon doesn't move him after being shot
-        GameObject kaleb = Instantiate(KalebRagdoll, shotPoint.position, Quaternion.identity);
-        GameObject explosionI = Instantiate(explosion, shotPoint.position, Quaternion.identity, transform);
-
-        // Destroy prefabs after 10 seconds
-        Destroy(kaleb, 10f);
-        Destroy(explosionI, 10f);
+        // edit(hallam): Parent both to the cannon so it despawns with the road
+        GameObject kaleb = Instantiate(KalebRagdoll, shotPoint.position, Quaternion.identity, transform);
+        Instantiate(explosion, shotPoint.position, Quaternion.identity, transform);
 
         // Try to aim for the player based on their velocity
         Vector3 offset = player.transform.position + player.velocity * 0.5f;

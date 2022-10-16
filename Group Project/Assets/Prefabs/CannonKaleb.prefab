@@ -1150,9 +1150,10 @@ GameObject:
   - component: {fileID: 8264544233877302479}
   - component: {fileID: 1449643838221553885}
   - component: {fileID: 8873684956680401442}
+  - component: {fileID: 2883616293244714993}
   m_Layer: 0
   m_Name: CannonKaleb
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1305,6 +1306,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2883616293244714993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8264544233870008079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91878876e5a226b46910db72614077d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesDamage: 2
 --- !u!1 &8264544233870008081
 GameObject:
   m_ObjectHideFlags: 0

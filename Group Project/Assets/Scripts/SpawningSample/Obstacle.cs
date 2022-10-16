@@ -6,9 +6,8 @@ public class Obstacle : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && ScoreManager.instance.AddCoins(-1))
         {
-            ScoreManager.instance.AddCoins(-1);
             Destroy(gameObject);
         }
     }
