@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
     public Transform UI;
     public TMP_Text coinText;
     public TMP_Text scoreText;
+    public TMP_Text livesText;
     public PowerupText powerupText;
 
     private Transform gameUI;
@@ -22,11 +23,16 @@ public class ScoreManager : MonoBehaviour
     private AudioSource coinSound;
     private TMP_Text deadScoreTitle;
     private TMP_Text deadScoreText;
+    
+
+    public float scoreToNextLife = 5000;
 
     private int coins = 0;
     private float score = 0f;
     private int scoreMultiplier = 1;
-    private bool dead = false;
+    private int lives = 5;
+    private bool invincible = false;
+    private bool dead = false; // Prevent PlayerController calling method too many times
 
     private const float countDuration = 0.5f;
     private const float coinWorth = 50f;
@@ -46,14 +52,37 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         if (dead) return;
+        if (score >= scoreToNextLife)
+        {
+            scoreToNextLife += scoreToNextLife;
+            AddLives(1);
+        }
+
         score += player.GetSpeed() * Time.deltaTime * scoreMultiplier;
         scoreText.text = score.ToString("0");
+    }
+
+    public void AddLives(int count)
+    {
+        if (invincible && count < 0) return;
+        lives += count;
+        if (lives <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            livesText.text = lives.ToString();
+        }
     }
 
     public void Die()
     {
         if (dead) return;
         dead = true;
+        lives = 0;
+        livesText.text = "0";
+
         Time.timeScale = 0.25f;
         music.enabled = false;
 
@@ -93,14 +122,13 @@ public class ScoreManager : MonoBehaviour
     {
         if (dead) return false;
 
-        coins += count * scoreMultiplier;
+        coins = Mathf.Max(0, coins + count * scoreMultiplier);
         coinText.text = coins.ToString();
 
         player.AddSpeed(count * 0.5f);
 
         // Audio is played from here since the coin deletes itself and attached audio sources
         coinSound.Play();
-
         return true;
     }
 
@@ -112,6 +140,17 @@ public class ScoreManager : MonoBehaviour
     public void SpeedPowerUp(float multiplier, float time)
     {
         player.SetSpeedMultiplier(multiplier, time);
+    }
+    
+    public void InvinciblePowerUp(float time)
+    {
+        invincible = true;
+        Invoke("MakeVulnerable", time);
+    }
+
+    private void MakeVulnerable()
+    {
+        invincible = false;
     }
 
     public void SetScoreMultiplier(int multi, float time)

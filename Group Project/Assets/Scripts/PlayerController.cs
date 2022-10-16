@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
 
     // For detecting whether the player can jump
     private const float rayDistance = 0.5f;
-
     private bool grounded = false;
     private float timeSinceGrounded = 0f;
 

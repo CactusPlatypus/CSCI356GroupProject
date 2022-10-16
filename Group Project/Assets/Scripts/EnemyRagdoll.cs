@@ -1,42 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyRagdoll : MonoBehaviour
 {
-    private Animator characterAnimator;
+    //private Animator characterAnimator;
     private Transform player;
-
-    [SerializeField] private Rigidbody characterRB;
-    [SerializeField] private float upForce = 1000f;
-    [SerializeField] private float forwardForce = 500f;
-    [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float leapRange = 7f;
+    private Transform characterTransform;
+    [SerializeField] private GameObject ragdoll;
 
     private bool usedLeap = false;
 
     void Start()
     {
-        characterAnimator = GetComponent<Animator>();
+        //characterAnimator = GetComponentsInChildren<Animator>()[0];
         player = GameObject.FindWithTag("Player").transform;
+        characterTransform = transform.Find("Kaleb").transform;
     }
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.position) <= leapRange && !usedLeap)
+        if (usedLeap) return;
+        if (Vector3.Distance(transform.position, player.position) < 25f)
         {
-            RaycastHit hit;
-            Vector3 rayDirection = player.position - transform.position;
-            if (Physics.Raycast(transform.position, rayDirection, out hit) && hit.transform == player)
-            {
-                transform.LookAt(player.transform);
-                Leap();
-            }
+            Leap();
         }
-
-        if (!usedLeap)
+        else
         {
-            Run();
+            //Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z -0.791f);
+            characterTransform.position = transform.position;
         }
     }
 
@@ -44,21 +37,11 @@ public class EnemyRagdoll : MonoBehaviour
     {
         usedLeap = true;
 
-        //change animation to jump
-        //characterAnimator.SetTrigger("Jump");
-
-        // Apply force
-        characterRB.AddForce(transform.up * upForce, ForceMode.Impulse);
-        characterRB.AddForce(transform.forward * forwardForce, ForceMode.Impulse);
-
         //disable animator
-        characterAnimator.enabled = false;
-    }
+        GameObject spawnedRagdoll = Instantiate(ragdoll);
+        spawnedRagdoll.transform.position = transform.position;
+        spawnedRagdoll.transform.LookAt(player);
 
-    private void Run()
-    {
-        //characterRB.velocity = transform.forward * moveSpeed;
-        transform.parent.Translate(transform.forward * moveSpeed * Time.deltaTime);
-        //characterRB.MovePosition(transform.position + (transform.forward * moveSpeed * Time.deltaTime));
+        Destroy(gameObject);
     }
 }

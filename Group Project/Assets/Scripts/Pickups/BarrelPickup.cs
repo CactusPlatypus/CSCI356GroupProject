@@ -25,10 +25,12 @@ public class BarrelPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             ScoreManager.instance.PowerUpPopup("BONKERS BARRELS!");
+            ScoreManager.instance.InvinciblePowerUp(lifetime);
             Transform player = GameObject.FindWithTag("Player").transform;
 
             GameObject barrels = Instantiate(spinningBarrels, player);
             barrels.transform.localPosition = Vector3.zero;
+
 
             // Destroy barrels after lifetime expires
             Destroy(barrels, lifetime);
