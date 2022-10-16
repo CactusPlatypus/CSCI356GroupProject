@@ -50,13 +50,16 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         if (dead) return;
-        if (score >= scoreToNextLife)
-        {
-            scoreToNextLife += scoreToNextLife;
-            AddLives(1);
-        }
+
         score += player.GetSpeed() * Time.deltaTime * scoreMultiplier;
         scoreText.text = score.ToString("0");
+
+        // Add a life every 5000 points
+        if (score >= scoreToNextLife)
+        {
+            scoreToNextLife += 5000f; // edit(hallam): scoreToNextLife * 2 meant exponential growth
+            AddLives(1);
+        }
     }
 
     public void AddLives(int count)
