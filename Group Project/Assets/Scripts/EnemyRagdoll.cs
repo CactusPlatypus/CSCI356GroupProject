@@ -24,6 +24,7 @@ public class EnemyRagdoll : MonoBehaviour
         if (usedLeap) return;
         if (Vector3.Distance(transform.position, player.position) < 25f)
         {
+            gameObject.GetComponent<EnemyMovement>().currentState = EnemyState.Leaping;
             Leap();
         }
         else
