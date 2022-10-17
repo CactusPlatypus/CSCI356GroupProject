@@ -31,7 +31,6 @@ public class BarrelPickup : MonoBehaviour
             GameObject barrels = Instantiate(spinningBarrels, player);
             barrels.transform.localPosition = Vector3.zero;
 
-
             // Destroy barrels after lifetime expires
             Destroy(barrels, lifetime);
 
