@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 103289100}
   - component: {fileID: 103289101}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: MainVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610027050}
+      - m_Target: {fileID: 1718041242}
         m_MethodName: setMasterVolume
         m_Mode: 0
         m_Arguments:
@@ -1014,7 +1014,7 @@ GameObject:
   - component: {fileID: 483501839}
   - component: {fileID: 483501840}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: SFXVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1092,7 +1092,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610027050}
+      - m_Target: {fileID: 1718041242}
         m_MethodName: setSFXVolume
         m_Mode: 0
         m_Arguments:
@@ -1352,7 +1352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 573248096}
   m_Layer: 5
-  m_Name: MusicVolume SLider
+  m_Name: MusicVolume Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1433,11 +1433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56834b178beec1744909246cf03133a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: b4bf5c00205c18e41a0a7af495cda68a, type: 2}
   hostMenu: {fileID: 810768187}
-  mainSlider: {fileID: 103289101}
-  musicSlider: {fileID: 1813746876}
-  SFXSlider: {fileID: 483501840}
 --- !u!114 &610027051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2205,7 +2201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 799242848}
   m_Layer: 5
-  m_Name: MainVolume SLider
+  m_Name: MainVolume Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3989,6 +3985,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1718041241}
+  - component: {fileID: 1718041242}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -4013,6 +4010,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1718041242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718041240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e16c67be9948bd46807e7e09dbdc2d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: b4bf5c00205c18e41a0a7af495cda68a, type: 2}
+  masterSlider: {fileID: 103289101}
+  musicSlider: {fileID: 1813746876}
+  SFXSlider: {fileID: 483501840}
 --- !u!1 &1813746874
 GameObject:
   m_ObjectHideFlags: 0
@@ -4024,7 +4037,7 @@ GameObject:
   - component: {fileID: 1813746875}
   - component: {fileID: 1813746876}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: MusicVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4102,7 +4115,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 610027050}
+      - m_Target: {fileID: 1718041242}
         m_MethodName: setMusicVolume
         m_Mode: 0
         m_Arguments:
@@ -4374,7 +4387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2013641495}
   m_Layer: 5
-  m_Name: SFXVolumeSLider
+  m_Name: SFXVolume Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

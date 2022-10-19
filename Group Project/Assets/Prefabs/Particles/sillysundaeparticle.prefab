@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 329545544291211861}
   - component: {fileID: -1463212009551424748}
   m_Layer: 0
-  m_Name: sillysundaeparticle
+  m_Name: SillySundaeParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
