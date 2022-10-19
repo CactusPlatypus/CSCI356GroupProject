@@ -18,7 +18,7 @@ public class RoadSpawner : MonoBehaviour
     private const int numRoads = 8;
     private Queue<GameObject> roads = new Queue<GameObject>(numRoads);
 
-    // Initial road the player starts on, maybe improve later
+    // Initial road the player starts on
     public GameObject initialRoad;
   
     private GameObject SpawnRoad(Transform end)
@@ -46,9 +46,6 @@ public class RoadSpawner : MonoBehaviour
 
     private void Start()
     {
-        // Force initial road to be deleted, maybe improve this later
-        roads.Enqueue(initialRoad);
-
         Transform lastEnd = transform;
         for (int i = 0; i < numRoads; i++)
         {
@@ -59,6 +56,12 @@ public class RoadSpawner : MonoBehaviour
 
     public void TriggerEntered()
     {
+        // Nuke the initial road if not already deleted
+        if (initialRoad != null)
+        {
+            Destroy(initialRoad);
+        }
+
         // Nuke the first road in queue
         Destroy(roads.Dequeue());
 
