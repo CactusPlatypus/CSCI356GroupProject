@@ -89,7 +89,7 @@ public class ScoreManager : MonoBehaviour
         deadUI.gameObject.SetActive(true);
         gameUI.gameObject.SetActive(false);
 
-        float totalScore = score + (coins * coinWorth);
+        float totalScore = score + coins * coinWorth;
         if (PlayerPrefs.GetFloat("HighScore", 0f) < totalScore)
         {
             PlayerPrefs.SetFloat("HighScore", totalScore);
