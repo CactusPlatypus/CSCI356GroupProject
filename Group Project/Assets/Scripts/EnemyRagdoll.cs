@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyRagdoll : MonoBehaviour
 {
-    //private Animator characterAnimator;
     private Transform player;
     private Transform characterTransform;
     [SerializeField] private GameObject ragdoll;
@@ -14,7 +13,6 @@ public class EnemyRagdoll : MonoBehaviour
 
     void Start()
     {
-        //characterAnimator = GetComponentsInChildren<Animator>()[0];
         player = GameObject.FindWithTag("Player").transform;
         characterTransform = transform.Find("Kaleb").transform;
     }
@@ -24,12 +22,10 @@ public class EnemyRagdoll : MonoBehaviour
         if (usedLeap) return;
         if (Vector3.Distance(transform.position, player.position) < 25f)
         {
-            
             Leap();
         }
         else
         {
-            //Vector3 pos = new Vector3(transform.position.x, transform.position.y + 2.0f, transform.position.z -0.791f);
             characterTransform.position = transform.position;
         }
     }
@@ -39,7 +35,7 @@ public class EnemyRagdoll : MonoBehaviour
         gameObject.GetComponent<EnemyMovement>().currentState = EnemyState.Leaping;
         usedLeap = true;
 
-        //disable animator
+        // Disable animator
         GameObject spawnedRagdoll = Instantiate(ragdoll);
         spawnedRagdoll.transform.position = transform.position;
         spawnedRagdoll.transform.LookAt(player);

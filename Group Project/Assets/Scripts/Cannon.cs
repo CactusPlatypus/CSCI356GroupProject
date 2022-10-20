@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CannonTest : MonoBehaviour
+public class Cannon : MonoBehaviour
 {
     private CharacterController player;
     private Transform shotPoint;

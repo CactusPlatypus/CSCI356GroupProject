@@ -122,6 +122,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2587465754222100215, guid: d1a86bea29a008c478d84e42462676cf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2587465754222100229, guid: d1a86bea29a008c478d84e42462676cf,
         type: 3}
       propertyPath: m_TagString
@@ -267,10 +272,20 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2587465754222100289, guid: d1a86bea29a008c478d84e42462676cf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2587465754222100291, guid: d1a86bea29a008c478d84e42462676cf,
         type: 3}
       propertyPath: m_Name
       value: EnemyKaleb Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587465754222100291, guid: d1a86bea29a008c478d84e42462676cf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2587465754222100297, guid: d1a86bea29a008c478d84e42462676cf,
         type: 3}
